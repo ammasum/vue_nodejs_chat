@@ -15,6 +15,14 @@ export default {
   components: {
     appHeader: Header,
     appBody
+  },
+  sockets: {
+    connect() {
+      console.log("Socket connect 11");
+    },
+    pMessage(data) {
+      console.log(data);
+    }
   }
 }
 </script>
