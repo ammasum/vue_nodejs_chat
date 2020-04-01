@@ -1,0 +1,3303 @@
+/*------------------------------------------------------------------
+[Master Stylesheet]
+
+Project:    Chatriq Messaging & Task Manager
+Version:    1.0
+Last change:    25/11/2019 [Initial Release]
+Primary use:    Chat & Messaging Application 
+
+
+[Table of contents]
+
+1. BOOTSTRAP
+2. BASE
+3. UTILITIES
+4. CALL LOG
+5. CHAT
+6. CONTACTS
+7. DOCS (DOCUMENTATION)
+8. MAIN LAYOUT
+9. TASK MANAGER
+10. CALLING MODAL
+11. ICONBOX
+12. INFORMATION PANEL
+13. MFB [MATERIAL FLOATING BUTTON]
+14. SEARCHBAR
+15. USER AVATAR
+
+/*------------------------------------------------------------------
+2::BASE
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+body {
+  font-size: 0.875rem;
+}
+
+.mdi {
+  font-size: 1.4rem;
+}
+
+.list-unstyled {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.preloader {
+  background: url("./../../assets/images/loader.svg") no-repeat center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999999;
+}
+
+/*------------------------------------------------------------------
+3::UTILITIES : HELPER CLASSES
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+.d-block {
+  display: block !important;
+}
+
+.font-weight-medium {
+  font-weight: 500;
+}
+
+.font-weight-semibold {
+  font-weight: 600;
+}
+
+.custom-scrollbar {
+  position: relative;
+  height: calc(100vh - 75px);
+}
+
+.custom-scrollbar2 {
+  position: relative;
+  height: 100%;
+}
+
+/*------------------------------------------------------------------
+[layouts Files Import]
+-------------------------------------------------------------------*/
+/*------------------------------------------------------------------
+4::CALL LOG PAGE LAYOUT STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+.ca-content__callswrapper {
+  padding-top: 3.125rem;
+  width: 100%;
+}
+
+@media only screen and (max-width: 992px) {
+  .ca-content__callswrapper {
+    padding-top: 0.9375rem;
+    display: none;
+  }
+
+  .ca-content__callswrapper.open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    z-index: 1030;
+  }
+
+  .ca-content__callswrapper.open.custom-scrollbar {
+    height: 100vh;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .ca-content__callswrapper .container {
+    max-width: 100%;
+  }
+}
+
+.ca-content__callswrapper .ca-call-details-card {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 576px) {
+  .ca-content__callswrapper .ca-call-details-card {
+    padding: 1rem 0.5rem;
+  }
+}
+
+.ca-content__callswrapper .ca-call-details-card .ca-call-details__left {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+@media only screen and (max-width: 350px) {
+  .ca-content__callswrapper .ca-call-details-card .ca-call-details__left {
+    margin-left: 1rem;
+  }
+}
+
+.ca-content__callswrapper .ca-call-details-card .ca-call-details__left .user-avatar {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+@media only screen and (max-width: 350px) {
+  .ca-content__callswrapper .ca-call-details-card .ca-call-details__left .user-avatar {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .ca-content__callswrapper .ca-call-details-card .ca-call-details__left .user-avatar img {
+    height: 3rem;
+    width: 3rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .ca-content__callswrapper .ca-call-details-card .ca-call-details__right {
+    display: none;
+  }
+}
+
+.ca-content__callswrapper .ca-call-details-card .ca-call-details__right .iconbox {
+  margin: 0 0.25rem;
+}
+
+.ca-content__callswrapper .ca-call-details-card .ca-call-details__pname {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.1px;
+}
+
+@media only screen and (max-width: 768px) {
+  .ca-content__callswrapper .ca-call-details-card .ca-call-details__pname {
+    font-size: 1.125rem;
+  }
+}
+
+.ca-content__callswrapper .ca-call-details-card .ca-call-details__pname .calllist__details--info {
+  font-weight: 500;
+}
+
+.ca-call-details-history {
+  position: relative;
+  height: calc(100vh - 12.8125rem);
+}
+
+@media only screen and (max-width: 992px) {
+  .ca-call-details-history {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .ca-call-details-history {
+    height: calc(100vh - 9.375rem);
+  }
+}
+
+.ca-call-details-history .card {
+  margin: 0 1rem;
+  margin-bottom: 0.625rem;
+}
+
+@media only screen and (max-width: 992px) {
+  .ca-call-details-history .card {
+    margin: 0 0 0.625rem 0;
+  }
+}
+
+.ca-call-details-history .call-outline-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  border-radius: 6.25rem;
+  transition: all .2s ease-in;
+}
+
+.ca-call-details-history .call-outline-btn .mdi {
+  height: 2.5rem;
+  width: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.25rem;
+}
+
+.ca-call-details-history .ca-call-history {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ca-call-details-history .ca-call-history__left {
+  display: flex;
+  align-items: center;
+}
+
+.ca-call-details-history .ca-call-history__left--title {
+  font-weight: 600;
+}
+
+.ca-call-details-history .ca-call-history__left--title span {
+  font-size: 0.8125rem;
+  height: 1.25rem;
+  font-weight: 400;
+}
+
+.ca-call-details-history .ca-call-history__left .call-outline-btn {
+  margin-right: 1rem;
+}
+
+.ca-call-details-history .ca-call-history__right .ca-call-duration {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+/*------------------------------------------------------------------
+5::CHAT-CONVERSASTION LAYOUT STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+.conversation {
+  display: flex;
+  align-items: center;
+  flex-basis: 100%;
+  padding: 1rem 1rem 1rem 1.5rem;
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation {
+    padding: 0.8rem;
+  }
+}
+
+.conversation__details {
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-basis: 100%;
+}
+
+.conversation .user-avatar {
+  margin-right: 1rem;
+  position: relative;
+  height: 3.125rem;
+  width: 3.125rem;
+  display: inline-block;
+}
+
+.conversation .user-avatar::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 0.8125rem;
+  width: 0.8125rem;
+  border-radius: 6.25rem;
+}
+
+.conversation__name {
+  color: inherit;
+  display: flex;
+  justify-content: space-between;
+}
+
+.conversation__name--title {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 1.25rem;
+  max-height: 1.25rem;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.conversation__time {
+  font-size: 0.75rem;
+}
+
+.conversation__message {
+  font-size: 0.8125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 1.25rem;
+}
+
+.conversation__message .badge {
+  font-size: 0.75rem;
+  margin-left: 0.3125rem;
+}
+
+.conversation__message i::before {
+  font-size: 1.25rem;
+}
+
+.conversation__message .badge-rounded {
+  border-radius: 6.25rem;
+}
+
+.conversation__message-preview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 1.25rem;
+  max-height: 1.25rem;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  flex: 1 1 auto;
+}
+
+.chatapp__headingbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.chatapp__actions {
+  display: flex;
+}
+
+.chatapp__actions i {
+  padding: 0 .5rem;
+  border-radius: 6.25rem;
+  cursor: pointer;
+}
+
+.chatapp__conversations {
+  flex: 1;
+}
+
+@media only screen and (max-width: 992px) {
+  .chatapp__conversations {
+    display: none;
+  }
+
+  .chatapp__conversations.open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    z-index: 1030;
+  }
+}
+
+.conversation-wrapper {
+  display: flex;
+  height: calc(100vh - 73px);
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper {
+    height: calc(100vh - 65px);
+  }
+}
+
+.conversation-wrapper .conversation-panel {
+  flex: 1;
+  height: calc(100vh - 73px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel {
+    height: calc(100vh - 65px);
+  }
+}
+
+.conversation-wrapper .conversation-panel__avatar {
+  display: flex;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 992px) {
+  .conversation-wrapper .conversation-panel__avatar {
+    flex: 1 1 auto;
+  }
+}
+
+.conversation-wrapper .conversation-panel__avatar img {
+  margin-right: 1rem;
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__avatar .user-avatar img {
+    height: 2.1875rem;
+    width: 2.1875rem;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .conversation-wrapper .conversation-panel__avatar .user-avatar {
+    display: none;
+  }
+}
+
+.conversation-wrapper .conversation-panel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+@media only screen and (max-width: 992px) {
+  .conversation-wrapper .conversation-panel__head {
+    padding: 1rem 0.4rem;
+  }
+}
+
+.conversation-wrapper .conversation-panel__head .conversation__name {
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.conversation-wrapper .conversation-panel__head .conversation__actions {
+  display: flex;
+  align-items: center;
+}
+
+.conversation-wrapper .conversation-panel__head .conversation__actions .action-icon {
+  padding: 0 0.5rem;
+  border-radius: 100px;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.conversation-wrapper .conversation-panel__body {
+  height: calc(100vh - 245px);
+}
+
+@media only screen and (max-width: 992px) {
+  .conversation-wrapper .conversation-panel__body {
+    padding-bottom: 1.875rem;
+    height: calc(100vh - 154px);
+  }
+}
+
+.conversation-wrapper .conversation-panel__body ul {
+  list-style: none;
+  padding: 0;
+  padding-bottom: 2rem;
+  margin: 0;
+}
+
+.conversation-wrapper .conversation-panel__body ul li:first-child {
+  border-radius: 5px 5px 5px 0;
+}
+
+.conversation-wrapper .conversation-panel__footer {
+  padding: 1rem 1rem;
+}
+
+@media only screen and (max-width: 992px) {
+  .conversation-wrapper .conversation-panel__footer {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer {
+    padding: 0.625rem 0.3125rem;
+  }
+}
+
+.conversation-wrapper .conversation-panel__footer .composer {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 350px) {
+  .conversation-wrapper .conversation-panel__footer .composer {
+    align-items: center;
+  }
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__left {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 350px) {
+  .conversation-wrapper .conversation-panel__footer .composer__left {
+    flex-direction: column;
+  }
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__left--sticker {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0 0.5rem;
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__left--sticker i::before {
+  font-size: 2.125rem;
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__left--sticker {
+    background: transparent;
+  }
+
+  .conversation-wrapper .conversation-panel__footer .composer__left--sticker i::before {
+    color: inherit;
+    font-size: 1.375rem;
+  }
+}
+
+@media only screen and (max-width: 576px) and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__left--sticker i::before {
+    line-height: 1;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .conversation-wrapper .conversation-panel__footer .composer__left--sticker {
+    padding: 0 0.25rem;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .conversation-wrapper .conversation-panel__footer .composer__left--sticker {
+    line-height: 1;
+  }
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__left--emoticon {
+  cursor: pointer;
+  margin-left: 0.625rem;
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__left--emoticon i::before {
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__left--emoticon i::before {
+    line-height: 1;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__left--emoticon {
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .conversation-wrapper .conversation-panel__footer .composer__left--emoticon {
+    line-height: 1;
+  }
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__middle {
+  flex: 1 1 auto;
+  position: relative;
+  padding-left: 1rem;
+  margin-right: 1rem;
+}
+
+@media only screen and (max-width: 420px) {
+  .conversation-wrapper .conversation-panel__footer .composer__middle {
+    padding-left: 0.3rem;
+    margin-right: 0.3rem;
+  }
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__middle .form-control {
+  border-radius: 6.25rem;
+  overflow: hidden;
+  resize: none;
+  padding: 0.9rem 8rem 0.9rem 1.5rem;
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__middle .form-control {
+    padding: .9rem 4.7rem .9rem .9rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .conversation-wrapper .conversation-panel__footer .composer__middle .form-control {
+    padding: .9rem 3.8rem .9rem .9rem;
+  }
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__middle--attachment {
+  position: absolute;
+  top: 0.625rem;
+  right: 5.75rem;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__middle--attachment i::after {
+    font-size: 1.375rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__middle--attachment {
+    right: 2.1875rem;
+  }
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__middle--photo {
+  position: absolute;
+  top: 0.625rem;
+  right: 3.5rem;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__middle--photo i::after {
+    font-size: 1.375rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__middle--photo {
+    right: 0.625rem;
+  }
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__middle--microphone {
+  position: absolute;
+  top: 0.625rem;
+  right: 1.25rem;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__middle--microphone {
+    display: none;
+  }
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__right {
+  display: flex;
+  align-items: center;
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__right--send {
+  border: none;
+  border-radius: 6.25rem;
+  height: 2.8125rem;
+  width: 2.8125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__right--send {
+    display: none;
+  }
+}
+
+.conversation-wrapper .conversation-panel__footer .composer__right--microphone {
+  display: none;
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__right--microphone {
+    border: none;
+    border-radius: 6.25rem;
+    height: 2.8125rem;
+    width: 2.8125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-wrapper .conversation-panel__footer .composer__right--microphone {
+    height: 35px;
+    width: 2.1875rem;
+  }
+}
+
+.message {
+  display: flex;
+  font-size: 14px;
+  position: relative;
+}
+
+.message__text {
+  max-width: 21.875rem;
+  padding: 1rem 1rem;
+  margin: 0.3125rem 0;
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 440px) {
+  .message__text {
+    max-width: 18.75rem;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .message__text {
+    max-width: 16.25rem;
+  }
+}
+
+.message.sent {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.message.sent .message__text {
+  border-radius: 1rem 1rem 1rem 1rem;
+  position: relative;
+}
+
+.message.sent:hover .message__options {
+  visibility: visible;
+}
+
+.message.sent .message__options {
+  order: -1;
+}
+
+.message.received .message__text {
+  border-radius: 1rem 1rem 1rem 1rem;
+  position: relative;
+}
+
+.message.received:hover .message__options {
+  visibility: visible;
+}
+
+.message .message__options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  visibility: hidden;
+  margin: 0 0.3125rem;
+}
+
+.message .message__options i {
+  cursor: pointer;
+  padding: 0 .5rem;
+  border-radius: 6.25rem;
+  height: 1.5625rem;
+  width: 1.5625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.message .message__options i:before {
+  font-size: 1.2rem;
+}
+
+.message .metadata {
+  margin: 0.3125rem 0 0 0.625rem;
+  user-select: none;
+  float: right;
+}
+
+.message .metadata .time {
+  margin-right: 0.3125rem;
+  white-space: pre;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.back-button-md {
+  display: none;
+}
+
+@media only screen and (max-width: 992px) {
+  .back-button-md {
+    display: block;
+    margin: 0 1rem 0 0;
+    display: flex;
+    align-items: center;
+    border-radius: 6.25rem;
+  }
+}
+
+/*------------------------------------------------------------------
+6::CONTACTS LAYOUT STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+.contactlist-heading {
+  padding: .625rem 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: .75rem;
+  display: inline-block;
+  border-radius: 0 1.5625rem 1.5625rem 0;
+}
+
+.callist-profile-wrapper,
+.contactist-profile-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+@media only screen and (max-width: 992px) {
+
+  .callist-profile-wrapper,
+  .contactist-profile-wrapper {
+    display: none;
+  }
+
+  .callist-profile-wrapper.open,
+  .contactist-profile-wrapper.open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    z-index: 1030;
+  }
+
+  .callist-profile-wrapper.custom-scrollbar,
+  .contactist-profile-wrapper.custom-scrollbar {
+    height: 100vh;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .callist-profile-wrapper.open .container,
+  .contactist-profile-wrapper.open .container {
+    max-width: 100%;
+    padding: 0;
+  }
+}
+
+.ca-profile-thumb {
+  height: 16.25rem;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 1.875rem;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@media only screen and (max-width: 576px) {
+  .ca-profile-thumb {
+    height: 12.5rem;
+  }
+}
+
+.ca-profile-info {
+  margin: 0 auto;
+  margin-bottom: -2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ca-profile-info .ca-profile-pic {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.ca-profile-actions {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  z-index: 100;
+  border-radius: 6.25rem;
+}
+
+.profile-settings-list {
+  padding-top: 3.125rem;
+}
+
+.profile-settings-list .ca-profile-title {
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-settings-list .ca-profile-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1px;
+}
+
+.profile-settings-list .ca-profile-tag {
+  font-size: 0.8125rem;
+  display: flex;
+  height: 1.25rem;
+}
+
+.conversation-panel__back-button {
+  display: none;
+}
+
+@media only screen and (max-width: 992px) {
+  .conversation-panel__back-button {
+    display: block;
+    margin: 0 1rem 0 0;
+    display: flex;
+    align-items: center;
+    height: 3.125rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .conversation-panel__back-button {
+    margin: 0;
+  }
+}
+
+.ca-content__contactstab {
+  padding-top: 3.125rem;
+  position: relative;
+  height: 100vh;
+}
+
+.calllist,
+.contactlist {
+  display: flex;
+  padding: 1rem 1rem 1rem 1.5rem;
+  flex-basis: 100%;
+}
+
+.calllist.active,
+.contactlist.active {
+  position: relative;
+}
+
+.calllist.active::before,
+.contactlist.active::before {
+  content: "";
+  display: block;
+  width: 0.375rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+@media only screen and (max-width: 576px) {
+
+  .calllist,
+  .contactlist {
+    padding: 0.8rem;
+  }
+}
+
+.calllist .user-avatar,
+.contactlist .user-avatar {
+  margin-right: 1rem;
+}
+
+.calllist__details,
+.contactlist__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.calllist__details--name,
+.contactlist__details--name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 1.25rem;
+  max-height: 1.25rem;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.calllist__details--info,
+.contactlist__details--info {
+  font-size: 0.8125rem;
+  height: 1rem;
+}
+
+.calllist__details--info .mdi,
+.contactlist__details--info .mdi {
+  margin-right: 0.3125rem;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.calllist__details--info .mdi:before,
+.contactlist__details--info .mdi:before {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.calllist__actions .iconbox,
+.contactlist__actions .iconbox {
+  margin: 0.125rem;
+}
+
+.chatapp__callstab,
+.chatapp__messagetab,
+.chatapp__contactstab {
+  display: flex;
+  flex: 1 1 auto;
+  height: 100%;
+}
+
+.ps-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+}
+
+@media only screen and (max-width: 359px) {
+  .ps-list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.ps-list__left {
+  display: flex;
+  align-items: center;
+}
+
+.ps-list__left--icon {
+  margin-right: 0.625rem;
+}
+
+@media only screen and (max-width: 359px) {
+  .ps-list__left--icon {
+    display: none;
+  }
+}
+
+.ps-list__left--name {
+  font-weight: 600;
+}
+
+.chatapp-user-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 0 0 22%;
+}
+
+@media only screen and (max-width: 1600px) {
+  .chatapp-user-list {
+    flex: 0 0 30%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .chatapp-user-list {
+    flex: 0 0 38%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .chatapp-user-list {
+    flex: 0 0 100%;
+  }
+}
+
+.chatapp-user-list-header {
+  padding: .5rem 1rem;
+}
+
+.chatapp-user-list-body {
+  position: relative;
+}
+
+@media only screen and (max-width: 992px) {
+  .chatapp-user-list-body {
+    height: calc(100vh - 150px);
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .chatapp-user-list-body {
+    height: calc(100vh - 138px);
+    padding-bottom: 65px;
+  }
+}
+
+.chatapp-user-list-body .list-unstyled {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatapp-user-list-body .list-unstyled li {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.9375rem;
+}
+
+.chatapp-user-list-body .list-unstyled li.active {
+  position: relative;
+}
+
+.chatapp-user-list-body .list-unstyled li.active::before {
+  content: "";
+  display: block;
+  height: 0.175rem;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.setting-sunheading {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.setting-sunheading.setting-sunheading-style01 {
+  display: inline-block;
+  padding: 0.625rem 0.9375rem 0.625rem 0.625rem;
+  border-radius: 0 1.5625rem 1.5625rem 0;
+}
+
+@media only screen and (max-width: 435px) {
+  .ca-contcat-profile__calling-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ca-contcat-profile__calling-buttons .iconbox-pill {
+    margin-bottom: .3125rem;
+  }
+}
+
+.userprofile-name {
+  text-align: center;
+  padding: 1rem 0 0.625rem 0;
+  font-weight: 600;
+}
+
+.userprofile-name h4 {
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.userprofile-name span {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+}
+
+/*------------------------------------------------------------------
+7::HELP PAGE STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+.docs-content {
+  padding-top: 3.125rem;
+  font-size: 1rem;
+}
+
+.docs-content p {
+  line-height: 1.8;
+}
+
+.docs-content .code {
+  padding: 0.625rem 0.9375rem;
+  border-radius: 0.25rem;
+}
+
+.docs-content .table thead th {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.docs-content .table tbody tr td {
+  font-size: 0.875rem;
+}
+
+.file-structure {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0.8125rem;
+}
+
+.file-structure ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1.5625rem;
+}
+
+.file-structure ul li {
+  display: block;
+  position: relative;
+}
+
+.file-structure ul li::before {
+  content: '|--';
+  display: inline-block;
+  margin-right: 0.3125rem;
+}
+
+.highlight {
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.highlight pre {
+  margin-bottom: 0;
+}
+
+.folderpath {
+  display: inline-block;
+  margin: 0;
+  padding: 0 0.25rem;
+  border-radius: 0.1875rem;
+  font-size: 0.875rem;
+}
+
+code,
+pre {
+  font-size: inherit;
+}
+
+/*------------------------------------------------------------------
+8::MAIN LAYOUT STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+.chatapp {
+  display: flex;
+  position: relative;
+  height: 100%;
+}
+
+.chatapp .navbar-nav {
+  flex-direction: row;
+}
+
+.chatapp .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.chatapp .navbar-brand h1 {
+  font-weight: 600;
+  margin-left: 10px;
+  margin-bottom: 0;
+  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 450px) {
+  .chatapp .navbar-brand h1 {
+    display: none;
+  }
+}
+
+.chatapp__sidebar {
+  position: fixed;
+  top: 4.5625rem;
+  left: 0;
+  bottom: 0;
+  max-width: 5rem;
+  width: 5rem;
+  height: calc(100% - 4.6113rem);
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 992px) {
+  .chatapp__sidebar {
+    top: initial;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    z-index: 1000;
+    padding-top: 0;
+    padding-bottom: .5rem;
+    background: #fff;
+  }
+
+  .chatapp__sidebar hr {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.chatapp__sidebar ul.nav {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  height: 100%;
+}
+
+.chatapp__sidebar ul.nav .sidebar-bottom-nav {
+  margin-top: auto;
+}
+
+@media only screen and (max-width: 576px) {
+  .chatapp__sidebar ul.nav .sidebar-bottom-nav {
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .chatapp__sidebar ul.nav {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .chatapp__sidebar ul.nav .nav-item-help,
+  .chatapp__sidebar ul.nav .nav-item-divider {
+    display: none;
+  }
+}
+
+.chatapp__sidebar ul.nav li {
+  /*********************************************************
+  **if title name is too long for small screen use this code
+  *********************************************************/
+}
+
+.chatapp__sidebar ul.nav li .nav-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: inherit;
+  padding: 0.6rem .8rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+@media only screen and (max-width: 576px) {
+  .chatapp__sidebar ul.nav li .nav-link {
+    padding: .4rem 0.4rem;
+    height: 100%;
+    justify-content: center;
+  }
+}
+
+.chatapp__sidebar ul.nav li .nav-link i {
+  margin: 0 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .chatapp__sidebar ul.nav li .nav-link i {
+    margin: 0;
+  }
+}
+
+.chatapp__sidebar ul.nav li .nav-link.active {
+  font-weight: 600;
+}
+
+.chatapp__sidebar ul.nav li .nav-link.active span {
+  display: block;
+}
+
+.chatapp__sidebar--logo {
+  height: 2.5rem;
+  width: 100%;
+  padding: 0 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatapp__sidebar--logo a {
+  display: block;
+}
+
+.chatapp__sidebar--logo img {
+  width: 100%;
+}
+
+.chatapp__content {
+  display: flex;
+  flex: 1 1 auto;
+  padding-left: 5rem;
+  margin-top: 4.5625rem;
+}
+
+@media only screen and (max-width: 992px) {
+  .chatapp__content {
+    padding-left: 0;
+  }
+}
+
+.chatapp__content .tab-content {
+  flex: 1 1 auto;
+}
+
+.user-nav {
+  cursor: pointer;
+}
+
+/*------------------------------------------------------------------
+9::TASK MANAGER PAGE STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+.taskmanager-wrapper {
+  width: 100%;
+  max-width: 93.75rem;
+  margin: 0 auto;
+}
+
+.taskbox {
+  display: flex;
+  align-items: center;
+}
+
+.taskbox__icon {
+  padding: 0.625rem 0.625rem;
+  border-radius: 0.5rem;
+  margin-right: 0.625rem;
+}
+
+.taskbox__icon i::before {
+  font-size: 2.25rem;
+}
+
+.taskbox__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.taskbox__text--heading {
+  font-weight: 500;
+  font-size: 0.8125rem;
+}
+
+.taskbox__text--numbers {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.taskpanel-title {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.75rem;
+  margin: 0.9rem 0;
+  padding: 1px 0.625rem;
+  border-radius: 0.1875rem;
+  display: inline-block;
+}
+
+.newtaskbtn {
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newtaskbtn i {
+  color: inherit;
+  margin-right: 0.625rem;
+  display: inherit;
+}
+
+.newtaskbtn i::before {
+  font-size: 1rem;
+}
+
+.taskpanel {
+  height: calc(100% - 6.25rem);
+  padding: 0.625rem;
+  border-radius: 0.5rem;
+}
+
+.taskcard {
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.taskcard .user-avatar-group {
+  flex-wrap: wrap;
+}
+
+.taskcard .card-body {
+  padding: 1.65rem 1.25rem 1.25rem;
+}
+
+.taskcard .taskcard-dragger {
+  position: absolute;
+  top: -0.3125rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.taskcard .taskcard-ribbon {
+  position: absolute;
+  top: -0.3125rem;
+  left: -1px;
+}
+
+.taskcard .taskcard-ribbon .badge {
+  font-weight: 600;
+  border-radius: 0.25rem 0 0.25rem 0;
+}
+
+.taskcard .task-expander {
+  position: absolute;
+  top: 0;
+  right: 0.3125rem;
+}
+
+.taskcard .task-details__title {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1.25rem 0 0.3125rem;
+}
+
+.taskcard .task-details .task-checklist {
+  padding: 0;
+  padding-top: 0.3125rem;
+  margin: 0;
+  list-style-type: none;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.taskcard .task-details .task-checklist li .task-checkbox label.done {
+  text-decoration: line-through;
+}
+
+.taskname {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.taskdate {
+  font-size: 0.6875rem;
+}
+
+.taskenddate {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.taskpanel-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 1.25rem;
+}
+
+.taskpanel-footer .checklist-number {
+  font-size: 0.875rem;
+}
+
+.taskpanel-footer .taskinfo-footer {
+  display: flex;
+}
+
+.taskpanel-footer .taskinfo-footer .attachment,
+.taskpanel-footer .taskinfo-footer .comments {
+  padding: 0 0.3125rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.taskpanel-footer .taskinfo-footer .attachment i,
+.taskpanel-footer .taskinfo-footer .comments i {
+  display: inline-flex;
+  margin-right: 0.25rem;
+}
+
+.taskpanel-footer .taskinfo-footer .attachment i::before,
+.taskpanel-footer .taskinfo-footer .comments i::before {
+  font-size: 1rem;
+  line-height: initial;
+}
+
+.taskpanel-footer .taskinfo-footer .attachment span,
+.taskpanel-footer .taskinfo-footer .comments span {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.btn-primary-light {
+  font-weight: 600;
+}
+
+.task-checkbox .custom-control-label:before {
+  border-radius: 6.25rem;
+}
+
+.task-checkbox .custom-control-label:after,
+.task-checkbox .custom-control-label:before {
+  top: 1px;
+}
+
+.base-font-size {
+  font-size: 1rem;
+}
+
+.base-font-size::before {
+  font-size: 1rem;
+}
+
+/*------------------------------------------------------------------
+[Components Files Import]
+-------------------------------------------------------------------*/
+/*------------------------------------------------------------------
+10::CALLING MODAL STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+#incomingCall .modal-body {
+  padding: 5rem 1rem;
+}
+
+#outGoingCall .call-actions {
+  padding-bottom: 0.9375rem;
+}
+
+.call-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem 3rem 0;
+}
+
+.call-hangup {
+  height: 4.375rem;
+  width: 4.375rem;
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+  line-height: 4.375rem;
+  text-align: center;
+  transition: all 0.2s ease-out;
+}
+
+.call-hangup:hover {
+  transform: scale(1.2);
+}
+
+.call-options {
+  padding: 1.875rem 3.125rem;
+}
+
+.call-options__iconbox {
+  cursor: pointer;
+  height: 3.125rem;
+  width: 3.125rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6.25rem;
+}
+
+.call-options h6 {
+  font-size: 0.875rem;
+  margin-top: 0.375rem;
+}
+
+.icvideocallwrapper {
+  position: relative;
+}
+
+.icvideocallwrapper .icvideo-contact__inner {
+  border-radius: 0.25rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .icvideocallwrapper .icvideo-contact__inner {
+    height: 100vh;
+    object-fit: cover;
+    border-radius: 0;
+  }
+}
+
+.icvideocallwrapper .icvideo-user {
+  position: absolute;
+  right: 0.3125rem;
+  top: 0.3125rem;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 0.25rem;
+}
+
+.icvideocallwrapper .icvideo-user img {
+  border-radius: .25rem;
+  height: auto;
+  width: auto;
+  max-width: 7rem;
+  padding: .25rem;
+}
+
+.icvideocallwrapper .icvideo-actions {
+  padding: 0.625rem 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .icvideocallwrapper .icvideo-actions {
+    flex-direction: column;
+    border-radius: 0.25rem;
+    position: absolute;
+    left: 0.625rem;
+    right: 0.625rem;
+    bottom: 0;
+  }
+}
+
+.icvideocallwrapper .icvideo-actions__left {
+  padding-left: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .icvideocallwrapper .icvideo-actions__left {
+    padding: 0;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.icvideocallwrapper .icvideo-actions__left--duration {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .icvideocallwrapper .icvideo-actions__middle {
+    margin-bottom: 0.5rem;
+    padding: 5px 10px;
+    border-radius: 6.25rem;
+  }
+}
+
+.icvideocallwrapper .icvideo-actions__right {
+  padding-right: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .icvideocallwrapper .icvideo-actions__right {
+    margin-bottom: 0.5rem;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .CallDialogFullscreen-sm .modal-dialog {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .CallDialogFullscreen-sm .modal-content {
+    height: 100vh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .CallDialogFullscreen-sm .modal-body {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .CallDialogFullscreen-sm .modal-body>div {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .CallDialogFullscreen-sm .call-options {
+    padding: 1.875rem 0;
+  }
+}
+
+.videocall-modal .modal-body {
+  max-height: 38.125rem;
+}
+
+/*------------------------------------------------------------------
+11::ICONBOX STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+.iconbox-group {
+  display: flex;
+  align-items: center;
+}
+
+.iconbox-group .iconbox {
+  margin: 0;
+}
+
+.iconbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  vertical-align: middle;
+  border-radius: 6.25rem;
+  transition: all .2s ease-in;
+}
+
+.iconbox.iconbox-pill {
+  padding: 0 0.9375rem 0 0.625rem;
+}
+
+.iconbox__icon {
+  height: 2.3rem;
+  width: 2.3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.25rem;
+}
+
+@media screen and (max-width: 380px) {
+  .iconbox__icon {
+    height: 2rem;
+    width: 2rem;
+  }
+}
+
+.iconbox__icon.mdi {
+  margin: 0 !important;
+  font-size: 1.2rem;
+}
+
+.iconbox__icon.mdi:before {
+  font-size: 1.2rem;
+}
+
+/*------------------------------------------------------------------
+12::USER INFORMATION PANEL STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+.information-panel {
+  width: 23.79rem;
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 4.5625rem;
+  right: 0;
+  bottom: 0;
+  padding-top: 1rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .information-panel {
+    position: absolute;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .information-panel {
+    top: 0;
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.information-panel__head {
+  height: 4.5625rem;
+  display: flex;
+  padding: 0 1.25rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.information-panel__head h5 {
+  margin: 0;
+}
+
+@media only screen and (max-width: 576px) {
+  .information-panel__head {
+    height: 4.4375rem;
+  }
+}
+
+.information-panel__closer {
+  padding: 0 .5rem;
+  border-radius: 6.25rem;
+  height: 2.1875rem;
+  width: 2.1875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.information-panel__body {
+  padding: 1.25rem;
+  height: calc(100vh - 83px);
+  position: relative;
+}
+
+.information-panel__body .userprofile-avatar {
+  height: 9.375rem;
+  width: 9.375rem;
+  margin: 0.9375rem auto;
+}
+
+.information-panel__body .userprofile-avatar img {
+  border-radius: 6.25rem;
+  height: 9.375rem;
+  width: 9.375rem;
+}
+
+.information-panel__body .userprofile-name {
+  text-align: center;
+}
+
+.information-panel__body .userprofile-name h4 {
+  margin-bottom: 0;
+  position: relative;
+  font-weight: 600;
+}
+
+.information-panel__body .social-icon-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.information-panel__body .social-icon-box .social-icon {
+  cursor: pointer;
+  padding: 0 0.3125rem;
+}
+
+.information-panel__body .mediagroup-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.information-panel__body .card .card-header {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+
+.information-panel__body .card .card-body {
+  padding: 0.25rem;
+}
+
+.information-panel__body .user-table-info {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.information-panel__body .user-table-info tr>td {
+  vertical-align: middle;
+}
+
+.information-panel__body .user-table-info tr>td:first-child {
+  width: 1.875rem;
+}
+
+.information-panel__body .accordion .card .card-header .card-title {
+  flex: 1;
+  cursor: pointer;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  padding: 0.375rem 0;
+}
+
+.information-panel__body .accordion.accordion-ungrouped .card {
+  margin-bottom: 1rem;
+  border-radius: 0;
+}
+
+.information-panel__body .doclistall {
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.information-panel__body .doclist,
+.information-panel__body .memberlist {
+  display: flex;
+  align-items: center;
+  padding: 0.3125rem 0.625rem;
+}
+
+.information-panel__body .doclist .docicon,
+.information-panel__body .doclist .membericon,
+.information-panel__body .memberlist .docicon,
+.information-panel__body .memberlist .membericon {
+  margin-right: 0.625rem;
+}
+
+.information-panel__body .doclist .docicon img,
+.information-panel__body .doclist .membericon img,
+.information-panel__body .memberlist .docicon img,
+.information-panel__body .memberlist .membericon img {
+  width: 2.8125rem;
+  height: 2.8125rem;
+  border-radius: 50%;
+}
+
+.information-panel__body .doclist .doctitle .docname,
+.information-panel__body .doclist .doctitle .membername,
+.information-panel__body .doclist .membertitle .docname,
+.information-panel__body .doclist .membertitle .membername,
+.information-panel__body .memberlist .doctitle .docname,
+.information-panel__body .memberlist .doctitle .membername,
+.information-panel__body .memberlist .membertitle .docname,
+.information-panel__body .memberlist .membertitle .membername {
+  font-weight: 600;
+}
+
+.information-panel__body .doclist .doctitle .docsize,
+.information-panel__body .doclist .doctitle .membersubtext,
+.information-panel__body .doclist .membertitle .docsize,
+.information-panel__body .doclist .membertitle .membersubtext,
+.information-panel__body .memberlist .doctitle .docsize,
+.information-panel__body .memberlist .doctitle .membersubtext,
+.information-panel__body .memberlist .membertitle .docsize,
+.information-panel__body .memberlist .membertitle .membersubtext {
+  font-size: 0.8125rem;
+  display: flex;
+  align-items: flex-start;
+  height: 1.25rem;
+}
+
+.information-panel__body .acpanel__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  padding: 0 12.8px;
+}
+
+.information-panel__body .acpanel__left {
+  display: flex;
+  align-items: center;
+}
+
+.information-panel__body .acpanel__left i {
+  margin-right: 0.3125rem;
+}
+
+.information-panel__body .acpanel__left i::before {
+  font-size: 1.25rem;
+}
+
+.information-panel__body .setting-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.information-panel__body .setting-list .setting-list-name {
+  font-weight: 500;
+}
+
+.information-panel__body .setting-list .setting-list-switch .material-switch {
+  margin: 0;
+}
+
+body.info-panel-opened .information-panel {
+  display: flex;
+}
+
+@media only screen and (max-width: 1200px) {
+  body.info-panel-opened .information-panel {
+    z-index: 1000;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  body.info-panel-opened .information-panel {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+body.info-panel-opened .conversation-wrapper {
+  padding-right: 23.75rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  body.info-panel-opened .conversation-wrapper {
+    padding-right: 0;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .backdrop-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    transition: all 0.5s ease-in;
+  }
+
+  .backdrop-overlay.hidden {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .backdrop-overlay {
+    display: none;
+  }
+}
+
+/*------------------------------------------------------------------
+13::MATERIAL FLOATING BUTTON STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+/* OTHER VARIABLES -------------------*/
+/* SHADOW ---------------------------*/
+/* EFFECTS ---------------------------*/
+/* SPEEDS ----------------------------*/
+/* SIZES -----------------------------*/
+/* SPACING ---------------------------*/
+/*------------------------------------*\
+    #BASE | Raw styles
+\*------------------------------------*/
+/**
+ * The very core styling of the button.
+ * These styles are shared by every instance of the button.
+ * Styles placed here should NOT care about placement in the screen,
+ * options chosen by the user or state of the button.
+ */
+.mfb-component--tl,
+.mfb-component--tr,
+.mfb-component--bl,
+.mfb-component--br {
+  box-sizing: border-box;
+  margin: 25px;
+  position: absolute;
+  white-space: nowrap;
+  z-index: 30;
+  padding-left: 0;
+  list-style: none;
+}
+
+.mfb-component--tl *,
+.mfb-component--tr *,
+.mfb-component--bl *,
+.mfb-component--br *,
+.mfb-component--tl *:before,
+.mfb-component--tr *:before,
+.mfb-component--bl *:before,
+.mfb-component--br *:before,
+.mfb-component--tl *:after,
+.mfb-component--tr *:after,
+.mfb-component--bl *:after,
+.mfb-component--br *:after {
+  box-sizing: inherit;
+}
+
+/*------------------------------------*\
+    #BASE | Modifiers
+\*------------------------------------*/
+/**
+ * These styles depends on the placement of the button.
+ * Styles can be:
+ * 1. Top-left:  modified by the " --tl " suffix.
+ * 2. Top-right: modified by the " --tr " suffix.
+ * 3. Bottom-left:  modified by the " --bl " suffix.
+ * 4. Bottom-right: modified by the " --br " suffix.
+ */
+.mfb-component--tl {
+  left: 0;
+  top: 0;
+}
+
+.mfb-component--tr {
+  right: 0;
+  top: 0;
+}
+
+.mfb-component--bl {
+  left: 0;
+  bottom: 0;
+}
+
+.mfb-component--br {
+  right: 0;
+  bottom: 40px;
+}
+
+/*------------------------------------*\
+    #BUTTONS | Base
+\*------------------------------------*/
+.mfb-component__button--main,
+.mfb-component__button--child {
+  display: inline-block;
+  position: relative;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  position: relative;
+  -webkit-user-drag: none;
+}
+
+/**
+ * This is the unordered list for the list items that contain
+ * the child buttons.
+ *
+ */
+.mfb-component__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mfb-component__list>li {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 1px;
+  padding: 10px 0;
+  margin: -10px 0;
+}
+
+/**
+ * These are the basic styles for all the icons inside the main button
+ */
+.mfb-component__icon,
+.mfb-component__main-icon--active,
+.mfb-component__main-icon--resting,
+.mfb-component__child-icon {
+  font-size: 22px;
+  text-align: center;
+  line-height: 46px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mfb-component__wrap {
+  height: 2.875rem;
+  width: 2.875rem;
+}
+
+[data-mfb-toggle="hover"]:hover .mfb-component__icon,
+[data-mfb-toggle="hover"]:hover .mfb-component__main-icon--active,
+[data-mfb-toggle="hover"]:hover .mfb-component__main-icon--resting,
+[data-mfb-toggle="hover"]:hover .mfb-component__child-icon,
+[data-mfb-state="open"] .mfb-component__icon,
+[data-mfb-state="open"] .mfb-component__main-icon--active,
+[data-mfb-state="open"] .mfb-component__main-icon--resting,
+[data-mfb-state="open"] .mfb-component__child-icon {
+  -webkit-transform: scale(1) rotate(0deg);
+  transform: scale(1) rotate(0deg);
+}
+
+/*------------------------------------*\
+    #BUTTONS | Modifiers
+\*------------------------------------*/
+.mfb-component__button--main {
+  height: 46px;
+  width: 46px;
+  z-index: 20;
+}
+
+.mfb-component__button--main:hover {
+  text-decoration: none;
+}
+
+.mfb-component__button--child {
+  height: 46px;
+  width: 46px;
+}
+
+.mfb-component__button--child:hover {
+  text-decoration: none;
+}
+
+.mfb-component__main-icon--active,
+.mfb-component__main-icon--resting {
+  -webkit-transform: scale(1) rotate(360deg);
+  transform: scale(1) rotate(360deg);
+  -webkit-transition: -webkit-transform 150ms cubic-bezier(0.4, 0, 1, 1);
+  transition: transform 150ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+.mfb-component__child-icon,
+.mfb-component__child-icon {
+  line-height: 46px;
+  font-size: 19.71429px;
+}
+
+.mfb-component__main-icon--active {
+  opacity: 0;
+}
+
+[data-mfb-toggle="hover"]:hover .mfb-component__main-icon,
+[data-mfb-state="open"] .mfb-component__main-icon {
+  -webkit-transform: scale(1) rotate(0deg);
+  transform: scale(1) rotate(0deg);
+}
+
+[data-mfb-toggle="hover"]:hover .mfb-component__main-icon--resting,
+[data-mfb-state="open"] .mfb-component__main-icon--resting {
+  opacity: 0;
+  position: absolute !important;
+}
+
+[data-mfb-toggle="hover"]:hover .mfb-component__main-icon--active,
+[data-mfb-state="open"] .mfb-component__main-icon--active {
+  opacity: 1;
+}
+
+/*------------------------------------*\
+    #BUTTONS | Animations
+\*------------------------------------*/
+/**
+    * SLIDE IN + FADE
+    * When hovering the main button, the child buttons slide out from beneath
+    * the main button while transitioning from $transparent to opaque.
+    *
+    */
+.mfb-component--tl.mfb-slidein .mfb-component__list li,
+.mfb-component--tr.mfb-slidein .mfb-component__list li {
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.mfb-component--tl.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li,
+.mfb-component--tl.mfb-slidein[data-mfb-state="open"] .mfb-component__list li,
+.mfb-component--tr.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li,
+.mfb-component--tr.mfb-slidein[data-mfb-state="open"] .mfb-component__list li {
+  opacity: 1;
+}
+
+.mfb-component--tl.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--tl.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(1),
+.mfb-component--tr.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--tr.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(1) {
+  -webkit-transform: translateY(54px);
+  transform: translateY(54px);
+}
+
+.mfb-component--tl.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--tl.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(2),
+.mfb-component--tr.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--tr.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(2) {
+  -webkit-transform: translateY(108px);
+  transform: translateY(108px);
+}
+
+.mfb-component--tl.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--tl.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(3),
+.mfb-component--tr.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--tr.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(3) {
+  -webkit-transform: translateY(162px);
+  transform: translateY(162px);
+}
+
+.mfb-component--tl.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--tl.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(4),
+.mfb-component--tr.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--tr.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(4) {
+  -webkit-transform: translateY(216px);
+  transform: translateY(216px);
+}
+
+.mfb-component--bl.mfb-slidein .mfb-component__list li,
+.mfb-component--br.mfb-slidein .mfb-component__list li {
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.mfb-component--bl.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li,
+.mfb-component--bl.mfb-slidein[data-mfb-state="open"] .mfb-component__list li,
+.mfb-component--br.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li,
+.mfb-component--br.mfb-slidein[data-mfb-state="open"] .mfb-component__list li {
+  opacity: 1;
+}
+
+.mfb-component--bl.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--bl.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(1),
+.mfb-component--br.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--br.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(1) {
+  -webkit-transform: translateY(-54px);
+  transform: translateY(-54px);
+}
+
+.mfb-component--bl.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--bl.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(2),
+.mfb-component--br.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--br.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(2) {
+  -webkit-transform: translateY(-108px);
+  transform: translateY(-108px);
+}
+
+.mfb-component--bl.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--bl.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(3),
+.mfb-component--br.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--br.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(3) {
+  -webkit-transform: translateY(-162px);
+  transform: translateY(-162px);
+}
+
+.mfb-component--bl.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--bl.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(4),
+.mfb-component--br.mfb-slidein[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--br.mfb-slidein[data-mfb-state="open"] .mfb-component__list li:nth-child(4) {
+  -webkit-transform: translateY(-216px);
+  transform: translateY(-216px);
+}
+
+/**
+    * SLIDE IN SPRING
+    * Same as slide-in but with a springy animation.
+    *
+    */
+.mfb-component--tl.mfb-slidein-spring .mfb-component__list li,
+.mfb-component--tr.mfb-slidein-spring .mfb-component__list li {
+  opacity: 0;
+  transition: all 0.5s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.mfb-component--tl.mfb-slidein-spring .mfb-component__list li:nth-child(1),
+.mfb-component--tr.mfb-slidein-spring .mfb-component__list li:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.mfb-component--tl.mfb-slidein-spring .mfb-component__list li:nth-child(2),
+.mfb-component--tr.mfb-slidein-spring .mfb-component__list li:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.mfb-component--tl.mfb-slidein-spring .mfb-component__list li:nth-child(3),
+.mfb-component--tr.mfb-slidein-spring .mfb-component__list li:nth-child(3) {
+  transition-delay: 0.15s;
+}
+
+.mfb-component--tl.mfb-slidein-spring .mfb-component__list li:nth-child(4),
+.mfb-component--tr.mfb-slidein-spring .mfb-component__list li:nth-child(4) {
+  transition-delay: 0.2s;
+}
+
+.mfb-component--tl.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li,
+.mfb-component--tl.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li,
+.mfb-component--tr.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li,
+.mfb-component--tr.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li {
+  opacity: 1;
+}
+
+.mfb-component--tl.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--tl.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(1),
+.mfb-component--tr.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--tr.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(1) {
+  transition-delay: 0.05s;
+  -webkit-transform: translateY(54px);
+  transform: translateY(54px);
+}
+
+.mfb-component--tl.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--tl.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(2),
+.mfb-component--tr.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--tr.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(2) {
+  transition-delay: 0.1s;
+  -webkit-transform: translateY(108px);
+  transform: translateY(108px);
+}
+
+.mfb-component--tl.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--tl.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(3),
+.mfb-component--tr.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--tr.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(3) {
+  transition-delay: 0.15s;
+  -webkit-transform: translateY(162px);
+  transform: translateY(162px);
+}
+
+.mfb-component--tl.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--tl.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(4),
+.mfb-component--tr.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--tr.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(4) {
+  transition-delay: 0.2s;
+  -webkit-transform: translateY(216px);
+  transform: translateY(216px);
+}
+
+.mfb-component--bl.mfb-slidein-spring .mfb-component__list li,
+.mfb-component--br.mfb-slidein-spring .mfb-component__list li {
+  opacity: 0;
+  transition: all 0.5s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.mfb-component--bl.mfb-slidein-spring .mfb-component__list li:nth-child(1),
+.mfb-component--br.mfb-slidein-spring .mfb-component__list li:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.mfb-component--bl.mfb-slidein-spring .mfb-component__list li:nth-child(2),
+.mfb-component--br.mfb-slidein-spring .mfb-component__list li:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.mfb-component--bl.mfb-slidein-spring .mfb-component__list li:nth-child(3),
+.mfb-component--br.mfb-slidein-spring .mfb-component__list li:nth-child(3) {
+  transition-delay: 0.15s;
+}
+
+.mfb-component--bl.mfb-slidein-spring .mfb-component__list li:nth-child(4),
+.mfb-component--br.mfb-slidein-spring .mfb-component__list li:nth-child(4) {
+  transition-delay: 0.2s;
+}
+
+.mfb-component--bl.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li,
+.mfb-component--bl.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li,
+.mfb-component--br.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li,
+.mfb-component--br.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li {
+  opacity: 1;
+}
+
+.mfb-component--bl.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--bl.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(1),
+.mfb-component--br.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--br.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(1) {
+  transition-delay: 0.05s;
+  -webkit-transform: translateY(-54px);
+  transform: translateY(-54px);
+}
+
+.mfb-component--bl.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--bl.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(2),
+.mfb-component--br.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--br.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(2) {
+  transition-delay: 0.1s;
+  -webkit-transform: translateY(-108px);
+  transform: translateY(-108px);
+}
+
+.mfb-component--bl.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--bl.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(3),
+.mfb-component--br.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--br.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(3) {
+  transition-delay: 0.15s;
+  -webkit-transform: translateY(-162px);
+  transform: translateY(-162px);
+}
+
+.mfb-component--bl.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--bl.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(4),
+.mfb-component--br.mfb-slidein-spring[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--br.mfb-slidein-spring[data-mfb-state="open"] .mfb-component__list li:nth-child(4) {
+  transition-delay: 0.2s;
+  -webkit-transform: translateY(-216px);
+  transform: translateY(-216px);
+}
+
+/**
+    * ZOOM-IN
+    * When hovering the main button, the child buttons grow
+    * from zero to normal size.
+    *
+    */
+.mfb-component--tl.mfb-zoomin .mfb-component__list li,
+.mfb-component--tr.mfb-zoomin .mfb-component__list li {
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+.mfb-component--tl.mfb-zoomin .mfb-component__list li:nth-child(1),
+.mfb-component--tr.mfb-zoomin .mfb-component__list li:nth-child(1) {
+  -webkit-transform: translateY(54px) scale(0);
+  transform: translateY(54px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.15s;
+}
+
+.mfb-component--tl.mfb-zoomin .mfb-component__list li:nth-child(2),
+.mfb-component--tr.mfb-zoomin .mfb-component__list li:nth-child(2) {
+  -webkit-transform: translateY(108px) scale(0);
+  transform: translateY(108px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.1s;
+}
+
+.mfb-component--tl.mfb-zoomin .mfb-component__list li:nth-child(3),
+.mfb-component--tr.mfb-zoomin .mfb-component__list li:nth-child(3) {
+  -webkit-transform: translateY(162px) scale(0);
+  transform: translateY(162px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.05s;
+}
+
+.mfb-component--tl.mfb-zoomin .mfb-component__list li:nth-child(4),
+.mfb-component--tr.mfb-zoomin .mfb-component__list li:nth-child(4) {
+  -webkit-transform: translateY(216px) scale(0);
+  transform: translateY(216px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0s;
+}
+
+.mfb-component--tl.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--tl.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(1),
+.mfb-component--tr.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--tr.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(1) {
+  -webkit-transform: translateY(54px) scale(1);
+  transform: translateY(54px) scale(1);
+  transition-delay: 0.05s;
+}
+
+.mfb-component--tl.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--tl.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(2),
+.mfb-component--tr.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--tr.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(2) {
+  -webkit-transform: translateY(108px) scale(1);
+  transform: translateY(108px) scale(1);
+  transition-delay: 0.1s;
+}
+
+.mfb-component--tl.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--tl.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(3),
+.mfb-component--tr.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--tr.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(3) {
+  -webkit-transform: translateY(162px) scale(1);
+  transform: translateY(162px) scale(1);
+  transition-delay: 0.15s;
+}
+
+.mfb-component--tl.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--tl.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(4),
+.mfb-component--tr.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--tr.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(4) {
+  -webkit-transform: translateY(216px) scale(1);
+  transform: translateY(216px) scale(1);
+  transition-delay: 0.2s;
+}
+
+.mfb-component--bl.mfb-zoomin .mfb-component__list li,
+.mfb-component--br.mfb-zoomin .mfb-component__list li {
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+.mfb-component--bl.mfb-zoomin .mfb-component__list li:nth-child(1),
+.mfb-component--br.mfb-zoomin .mfb-component__list li:nth-child(1) {
+  -webkit-transform: translateY(-54px) scale(0);
+  transform: translateY(-54px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.15s;
+}
+
+.mfb-component--bl.mfb-zoomin .mfb-component__list li:nth-child(2),
+.mfb-component--br.mfb-zoomin .mfb-component__list li:nth-child(2) {
+  -webkit-transform: translateY(-108px) scale(0);
+  transform: translateY(-108px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.1s;
+}
+
+.mfb-component--bl.mfb-zoomin .mfb-component__list li:nth-child(3),
+.mfb-component--br.mfb-zoomin .mfb-component__list li:nth-child(3) {
+  -webkit-transform: translateY(-162px) scale(0);
+  transform: translateY(-162px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.05s;
+}
+
+.mfb-component--bl.mfb-zoomin .mfb-component__list li:nth-child(4),
+.mfb-component--br.mfb-zoomin .mfb-component__list li:nth-child(4) {
+  -webkit-transform: translateY(-216px) scale(0);
+  transform: translateY(-216px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0s;
+}
+
+.mfb-component--bl.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--bl.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(1),
+.mfb-component--br.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--br.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(1) {
+  -webkit-transform: translateY(-54px) scale(1);
+  transform: translateY(-54px) scale(1);
+  transition-delay: 0.05s;
+}
+
+.mfb-component--bl.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--bl.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(2),
+.mfb-component--br.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--br.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(2) {
+  -webkit-transform: translateY(-108px) scale(1);
+  transform: translateY(-108px) scale(1);
+  transition-delay: 0.1s;
+}
+
+.mfb-component--bl.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--bl.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(3),
+.mfb-component--br.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--br.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(3) {
+  -webkit-transform: translateY(-162px) scale(1);
+  transform: translateY(-162px) scale(1);
+  transition-delay: 0.15s;
+}
+
+.mfb-component--bl.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--bl.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(4),
+.mfb-component--br.mfb-zoomin[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--br.mfb-zoomin[data-mfb-state="open"] .mfb-component__list li:nth-child(4) {
+  -webkit-transform: translateY(-216px) scale(1);
+  transform: translateY(-216px) scale(1);
+  transition-delay: 0.2s;
+}
+
+/**
+     * FOUNTAIN
+     * When hovering the main button the child buttons
+     * jump into view from outside the viewport
+     */
+.mfb-component--tl.mfb-fountain .mfb-component__list li,
+.mfb-component--tr.mfb-fountain .mfb-component__list li {
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+.mfb-component--tl.mfb-fountain .mfb-component__list li:nth-child(1),
+.mfb-component--tr.mfb-fountain .mfb-component__list li:nth-child(1) {
+  -webkit-transform: translateY(-54px) scale(0);
+  transform: translateY(-54px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.15s;
+}
+
+.mfb-component--tl.mfb-fountain .mfb-component__list li:nth-child(2),
+.mfb-component--tr.mfb-fountain .mfb-component__list li:nth-child(2) {
+  -webkit-transform: translateY(-108px) scale(0);
+  transform: translateY(-108px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.1s;
+}
+
+.mfb-component--tl.mfb-fountain .mfb-component__list li:nth-child(3),
+.mfb-component--tr.mfb-fountain .mfb-component__list li:nth-child(3) {
+  -webkit-transform: translateY(-162px) scale(0);
+  transform: translateY(-162px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.05s;
+}
+
+.mfb-component--tl.mfb-fountain .mfb-component__list li:nth-child(4),
+.mfb-component--tr.mfb-fountain .mfb-component__list li:nth-child(4) {
+  -webkit-transform: translateY(-216px) scale(0);
+  transform: translateY(-216px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0s;
+}
+
+.mfb-component--tl.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--tl.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(1),
+.mfb-component--tr.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--tr.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(1) {
+  -webkit-transform: translateY(54px) scale(1);
+  transform: translateY(54px) scale(1);
+  transition-delay: 0.05s;
+}
+
+.mfb-component--tl.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--tl.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(2),
+.mfb-component--tr.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--tr.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(2) {
+  -webkit-transform: translateY(108px) scale(1);
+  transform: translateY(108px) scale(1);
+  transition-delay: 0.1s;
+}
+
+.mfb-component--tl.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--tl.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(3),
+.mfb-component--tr.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--tr.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(3) {
+  -webkit-transform: translateY(162px) scale(1);
+  transform: translateY(162px) scale(1);
+  transition-delay: 0.15s;
+}
+
+.mfb-component--tl.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--tl.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(4),
+.mfb-component--tr.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--tr.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(4) {
+  -webkit-transform: translateY(216px) scale(1);
+  transform: translateY(216px) scale(1);
+  transition-delay: 0.2s;
+}
+
+.mfb-component--bl.mfb-fountain .mfb-component__list li,
+.mfb-component--br.mfb-fountain .mfb-component__list li {
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+.mfb-component--bl.mfb-fountain .mfb-component__list li:nth-child(1),
+.mfb-component--br.mfb-fountain .mfb-component__list li:nth-child(1) {
+  -webkit-transform: translateY(54px) scale(0);
+  transform: translateY(54px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.15s;
+}
+
+.mfb-component--bl.mfb-fountain .mfb-component__list li:nth-child(2),
+.mfb-component--br.mfb-fountain .mfb-component__list li:nth-child(2) {
+  -webkit-transform: translateY(108px) scale(0);
+  transform: translateY(108px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.1s;
+}
+
+.mfb-component--bl.mfb-fountain .mfb-component__list li:nth-child(3),
+.mfb-component--br.mfb-fountain .mfb-component__list li:nth-child(3) {
+  -webkit-transform: translateY(162px) scale(0);
+  transform: translateY(162px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.05s;
+}
+
+.mfb-component--bl.mfb-fountain .mfb-component__list li:nth-child(4),
+.mfb-component--br.mfb-fountain .mfb-component__list li:nth-child(4) {
+  -webkit-transform: translateY(216px) scale(0);
+  transform: translateY(216px) scale(0);
+  transition: all 0.5s;
+  transition-delay: 0s;
+}
+
+.mfb-component--bl.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--bl.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(1),
+.mfb-component--br.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(1),
+.mfb-component--br.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(1) {
+  -webkit-transform: translateY(-54px) scale(1);
+  transform: translateY(-54px) scale(1);
+  transition-delay: 0.05s;
+}
+
+.mfb-component--bl.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--bl.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(2),
+.mfb-component--br.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(2),
+.mfb-component--br.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(2) {
+  -webkit-transform: translateY(-108px) scale(1);
+  transform: translateY(-108px) scale(1);
+  transition-delay: 0.1s;
+}
+
+.mfb-component--bl.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--bl.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(3),
+.mfb-component--br.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(3),
+.mfb-component--br.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(3) {
+  -webkit-transform: translateY(-162px) scale(1);
+  transform: translateY(-162px) scale(1);
+  transition-delay: 0.15s;
+}
+
+.mfb-component--bl.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--bl.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(4),
+.mfb-component--br.mfb-fountain[data-mfb-toggle="hover"]:hover .mfb-component__list li:nth-child(4),
+.mfb-component--br.mfb-fountain[data-mfb-state="open"] .mfb-component__list li:nth-child(4) {
+  -webkit-transform: translateY(-216px) scale(1);
+  transform: translateY(-216px) scale(1);
+  transition-delay: 0.2s;
+}
+
+/*------------------------------------*\
+    #LABELS | base
+\*------------------------------------*/
+/**
+ * These are the labels associated to each button,
+ * exposed only when hovering the related button.
+ * They are called labels but are in fact data-attributes of
+ * each button (an anchor tag).
+ */
+[data-mfb-label]:after {
+  content: attr(data-mfb-label);
+  opacity: 0;
+  transition: all 0.5s;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  pointer-events: none;
+  line-height: normal;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.6875rem;
+  transition: all 0.5s;
+}
+
+[data-mfb-toggle="hover"] [data-mfb-label]:hover:after,
+[data-mfb-state="open"] [data-mfb-label]:after {
+  content: attr(data-mfb-label);
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+/*------------------------------------*\
+    #LABELS | Modifiers
+\*------------------------------------*/
+.mfb-component--br [data-mfb-label]:after,
+.mfb-component--tr [data-mfb-label]:after {
+  content: attr(data-mfb-label);
+  right: 50px;
+}
+
+.mfb-component--br .mfb-component__list [data-mfb-label]:after,
+.mfb-component--tr .mfb-component__list [data-mfb-label]:after {
+  content: attr(data-mfb-label);
+  right: 50px;
+}
+
+.mfb-component--tl [data-mfb-label]:after,
+.mfb-component--bl [data-mfb-label]:after {
+  content: attr(data-mfb-label);
+  left: 50px;
+}
+
+.mfb-component--tl .mfb-component__list [data-mfb-label]:after,
+.mfb-component--bl .mfb-component__list [data-mfb-label]:after {
+  content: "attr(data-mfb-label)";
+  left: 50px;
+}
+
+/*------------------------------------*\
+    #DEVELOPMENT | In development
+\*------------------------------------*/
+/**
+ * This part is where unfinished code should stay.
+ * When a feature is ready(sh) move these styles to their proper place.
+ */
+/*------------------------------------*\
+    #DEVELOPMENT | Debuggers
+\*------------------------------------*/
+/**
+ * These are mainly helpers for development. They do not have to end up
+ * in production but it's handy to keep them when developing.
+ */
+/**
+ * Apply this class to the html tag when developing the slide-in button
+ */
+/*------------------------------------------------------------------
+14::SEARCHBAR STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+.iconbox-searchbar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 1rem;
+  z-index: 10;
+  transition: all .2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.iconbox-searchbar.search-visible {
+  opacity: 1;
+  visibility: visible;
+  animation: all 0.2s ease-in-out;
+}
+
+.iconbox-searchbar .form-control {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0px;
+  padding: 0 3.375rem 0 3.125rem;
+  height: 100%;
+  max-width: 100%;
+  outline: none;
+  font-size: 0.875rem;
+}
+
+.iconbox-searchbar .form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.iconbox-searchbar .search-close {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.125rem;
+  height: 100%;
+  text-align: center;
+  display: table;
+  text-decoration: none;
+}
+
+.iconbox-searchbar .search-close i {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.iconbox-searchbar .search-submit {
+  position: absolute;
+  right: 0.625rem;
+  top: 0.875rem;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  width: 2.8125rem;
+  height: 2.8125rem;
+  border-radius: 6.25rem;
+}
+
+.iconbox-searchbar .search-submit:focus {
+  outline: none;
+}
+
+/*------------------------------------------------------------------
+15::USER AVATAR STYLESHEET
+
+Last change:    25/11/2019 [Initial Release]
+-------------------------------------------------------------------*/
+.user-avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar-group .user-avatar {
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  transition: all 0.2s ease;
+}
+
+.user-avatar-group .user-avatar:hover {
+  z-index: 1;
+}
+
+.user-avatar-group .user-avatar:first-child {
+  margin-left: 0;
+}
+
+.user-avatar {
+  display: inline-flex;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.user-avatar:hover {
+  text-decoration: none;
+}
+
+.user-avatar img {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 0.5rem;
+}
+
+.user-avatar span {
+  width: 3.125rem;
+  height: 3.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: inherit;
+}
+
+.user-avatar.user-avatar-rounded {
+  border-radius: 100%;
+}
+
+.user-avatar.user-avatar-rounded img {
+  border-radius: 100%;
+}
+
+.user-avatar.user-avatar-xs span {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.625rem;
+}
+
+.user-avatar.user-avatar-xs img {
+  height: 1.5rem;
+  max-width: 1.5rem;
+  width: 100%;
+}
+
+.user-avatar.user-avatar-sm span {
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 0.875rem;
+}
+
+.user-avatar.user-avatar-sm img {
+  height: 2.25rem;
+  max-width: 2.25rem;
+  width: 100%;
+}
+
+.user-avatar.user-avatar-md span {
+  width: 3.75rem;
+  height: 3.75rem;
+  font-size: 1.1rem;
+}
+
+.user-avatar.user-avatar-md img {
+  height: 3.75rem;
+  max-width: 3.75rem;
+  width: 100%;
+}
+
+.user-avatar.user-avatar-lg span {
+  width: 4.375rem;
+  height: 4.375rem;
+  font-size: 1.3rem;
+}
+
+.user-avatar.user-avatar-lg img {
+  height: 4.375rem;
+  max-width: 4.375rem;
+  width: 100%;
+}
+
+.user-avatar.user-avatar-xl span {
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.7rem;
+}
+
+.user-avatar.user-avatar-xl img {
+  height: 5rem;
+  max-width: 5rem;
+  width: 100%;
+}
+
+.chatriq-user {
+  background-image: url('/assets/images/user/50/spritesheet.png');
+  background-repeat: no-repeat;
+  display: block;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 6.25rem;
+  margin-right: 1rem
+}
+
+.chatriq-user-01 {
+  background-position: -5px -5px
+}
+
+.chatriq-user-02 {
+  background-position: -65px -5px
+}
+
+.chatriq-user-03 {
+  background-position: -125px -5px
+}
+
+.chatriq-user-04 {
+  background-position: -185px -5px
+}
+
+.chatriq-user-05 {
+  background-position: -245px -5px
+}
+
+.chatriq-user-06 {
+  background-position: -305px -5px
+}
+
+.chatriq-user-07 {
+  background-position: -365px -5px
+}
+
+.chatriq-user-08 {
+  background-position: -425px -5px
+}
+
+.chatriq-user-09 {
+  background-position: -485px -5px
+}
+
+.chatriq-user-10 {
+  background-position: -545px -5px
+}
+
+.chatriq-user-11 {
+  background-position: -605px -5px
+}
+
+.chatriq-user-12 {
+  background-position: -665px -5px
+}
+
+.chatriq-user-13 {
+  background-position: -725px -5px
+}
+
+.chatriq-user-14 {
+  background-position: -785px -5px
+}
+
+.avatar-info {
+  margin-right: 1rem
+}
