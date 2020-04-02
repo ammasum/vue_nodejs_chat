@@ -8,6 +8,7 @@ const server = http.createServer(app);
 const socket = io(server);
 
 socket.on('connection', (socket) => {
+    console.log(socket.request.rawHeaders);
     socket.emit('pMessage', "Hello data");
 });
 
