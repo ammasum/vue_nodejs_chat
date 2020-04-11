@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Socket from '../socket/socket-connection';
-
-Socket(Vue);
+import store from '../store/chat';
 
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
+  store
 }).$mount('#app')
