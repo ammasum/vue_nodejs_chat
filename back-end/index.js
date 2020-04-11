@@ -7,6 +7,25 @@ require('dotenv').config();
 
 let connectionStack = [];
 
+function broadcastMessage(senderId, message) {
+    for(let i = 0; i < connectionStack.length; i++) {
+        if(connectionStack[i].id === senderId) {
+            const sendMsg = {
+                status: true,
+                type: 'USER_MESSAGE',
+                message: {
+                    message,
+                    time: "07:15 AM",
+                    type: 0,
+                    seen: 0
+                }
+            }
+            connectionStack[i].write(sendMsg);
+            return;
+        }
+    }
+}
+
 function updateAllConnectedList() {
     connectionStack.forEach((connection) => {
         const tempConn = [];
@@ -28,6 +47,18 @@ new wsec({port: 8080}, (socket) => {
     socket.on('connected', (connection) => {
         connectionStack.push(connection);
         updateAllConnectedList();
+    });
+    socket.on('data', (connection, data) => {
+        if(data.length < 10) {
+            return;
+        }
+        data = JSON.stringify(data);
+        switch(data.type) {
+            case 'USER_MESSAGE':
+              broadcastMessage(data.message.to, data.message.message);
+              break;
+            
+          }
     });
     socket.on('end', (connection) => {
         connectionStack = connectionStack.filter(conn => {

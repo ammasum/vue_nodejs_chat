@@ -11,7 +11,7 @@
             </div>
 
             <div class="composer__middle">
-                <textarea class="form-control" rows="1" placeholder="Type a message..."></textarea>
+                <textarea class="form-control" rows="1" v-model="messages" placeholder="Type a message..."></textarea>
 
                 <div class="composer__middle--microphone">
                     <i class="mdi mdi-microphone"></i>
@@ -25,7 +25,7 @@
             </div>
 
             <div class="composer__right">
-                <div class="composer__right--send">
+                <div @click="onSend" class="composer__right--send">
                     <i class="mdi mdi-send"></i>
                 </div>
                 <div class="composer__right--microphone">
@@ -38,7 +38,25 @@
 
 <script>
     export default {
-        name: "Convers-input"
+        data() {
+            return {
+                messages: ''
+            }
+        },
+        methods: {
+            onSend() {
+                const sendMsg = {
+                    status: true,
+                    type: 'USER_MESSAGE',
+                    message: {
+                        to: this.$store.state.activeInput,
+                        message: this.messages
+                    }
+                }
+                this.$store.state.socketInstance.send(JSON.stringify(sendMsg));
+                this.messages = '';
+            }
+        }
     }
 </script>
 

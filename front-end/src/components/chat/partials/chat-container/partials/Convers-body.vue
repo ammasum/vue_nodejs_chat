@@ -20,14 +20,15 @@
 
 <script>
     export default {
-        name: "Convers-body",
+        // props: ['conversations'],
         data: function () {
             return {
                 conversations: [
                     {
                         message: ["Hi"],
                         time: "07:15 AM",
-                        type: 0
+                        type: 0,
+                        seen: 0
                     },
                     {
                         message: ["How are you"],

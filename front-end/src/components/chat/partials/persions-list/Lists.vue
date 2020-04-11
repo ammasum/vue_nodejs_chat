@@ -17,28 +17,8 @@
             </div>
 
             <ul class="list-unstyled">
-                <li class="active">
-                    <div class="conversation ">
-
-                        <div class="user-avatar user-avatar-rounded online">
-                            <div class="chatriq-user chatriq-user-11"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Jack P. Angulo</div>
-                                <div class="conversation__time">07:15 PM</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta consequuntur accusantium tempora. Ad officiis voluptate neque, deleniti porro necessitatibus aut!
-                                </div>
-                                <span><i class="mdi mdi-pin"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li v-for="(connection, index) in connections" :key="index" :class="{actove: index === activeInput}">
-                    <div class="conversation" @click="updateActiveInput(index)">
+                <li v-for="(connection, index) in connections" :key="index" :class="{active: connection.id === activeInput}">
+                    <div class="conversation" @click="updateActiveInput(connection.id)">
                         <div class="user-avatar user-avatar-rounded online">
                             <div class="chatriq-user chatriq-user-03"></div>
                         </div>
@@ -82,13 +62,13 @@
                     </li>
 
                     <li>
-                        <a href="javascript:;"  data-mfb-label="New Call" class="mfb-component__button--child">
+                        <a href="javascript:;" data-mfb-label="New Call" class="mfb-component__button--child">
                             <i class="mfb-component__child-icon mdi mdi-phone"></i>
                         </a>
                     </li>
 
                     <li>
-                        <a href="javascript:;"  data-mfb-label="New Chat" class="mfb-component__button--child">
+                        <a href="javascript:;" data-mfb-label="New Chat" class="mfb-component__button--child">
                             <i class="mfb-component__child-icon mdi mdi-android-messages"></i>
                         </a>
                     </li>
@@ -107,8 +87,9 @@
             }
         },
         methods: {
-            updateActiveInput(index) {
-                this.activeInput = index;
+            updateActiveInput(id) {
+                this.$store.state.activeInput = id;
+                this.activeInput = id;
             }
         },
         computed: {

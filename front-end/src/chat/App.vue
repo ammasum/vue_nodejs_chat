@@ -27,13 +27,19 @@ export default {
   },
   created() {
     const ws = new WebSocket('ws://localhost:8080');
+    this.$store.state.socketInstance = ws;
     ws.onmessage = (event) => {
-      console.log(event);
       let data = event.data;
       if(typeof data === 'string') {
         data = JSON.parse(data);
       }
-      this.updateConnectionStore(data.connections);
+      switch(data.type) {
+        case 'CONNECTION_LIST':
+          console.log("working switch");
+          this.updateConnectionStore(data.connections);
+          break;
+        
+      }
     }
   }
 }
