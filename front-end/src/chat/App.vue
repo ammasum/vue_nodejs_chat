@@ -11,17 +11,29 @@
 import Header from '../components/chat/common/Header.vue';
 import appBody from '../components/chat/Wrapper.vue'
 export default {
-  name: 'App',
+  data: function() {
+    return {
+      name: "Hello",
+    }
+  },
   components: {
     appHeader: Header,
     appBody
   },
-  sockets: {
-    connect() {
-      console.log("Socket connect 11");
-    },
-    pMessage(data) {
-      console.log(data);
+  methods: {
+    updateConnectionStore(connections) {
+      this.$store.state.connections = connections;
+    }
+  },
+  created() {
+    const ws = new WebSocket('ws://localhost:8080');
+    ws.onmessage = (event) => {
+      console.log(event);
+      let data = event.data;
+      if(typeof data === 'string') {
+        data = JSON.parse(data);
+      }
+      this.updateConnectionStore(data.connections);
     }
   }
 }

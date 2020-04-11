@@ -1,15 +1,42 @@
 const http = require('http');
-const express = require('express');
-const io = require('socket.io');
+const wsec = require('wsec');
 
-const port = process.env.PORT || 4200;
-const app = express();
-const server = http.createServer(app);
-const socket = io(server);
+require('dotenv').config();
 
-socket.on('connection', (socket) => {
-    console.log(socket.request.rawHeaders);
-    socket.emit('pMessage', "Hello data");
+// const chatMdl = require('./model/chat');
+
+let connectionStack = [];
+
+function updateAllConnectedList() {
+    connectionStack.forEach((connection) => {
+        const tempConn = [];
+        for(let i = 0; i < connectionStack.length; i++) {
+            if(connectionStack[i].id !== connection.id) {
+                tempConn.push({id: connectionStack[i].id});
+            }
+        }
+        const sendObj = {
+            connections: tempConn,
+            status: true,
+            type: 'CONNECTION_LIST'
+        }
+        connection.write(sendObj);
+    });
+}
+
+new wsec({port: 8080}, (socket) => {
+    socket.on('connected', (connection) => {
+        connectionStack.push(connection);
+        updateAllConnectedList();
+    });
+    socket.on('end', (connection) => {
+        connectionStack = connectionStack.filter(conn => {
+            if(conn.id === connection.id) {
+                return false;
+            }
+            return true;
+        });
+        updateAllConnectedList();
+    });
 });
 
-server.listen(port, () => console.log(`Server start at http:localhost:${port}`));

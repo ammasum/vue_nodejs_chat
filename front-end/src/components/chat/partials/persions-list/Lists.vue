@@ -37,14 +37,14 @@
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="conversation">
+                <li v-for="(connection, index) in connections" :key="index" :class="{actove: index === activeInput}">
+                    <div class="conversation" @click="updateActiveInput(index)">
                         <div class="user-avatar user-avatar-rounded online">
                             <div class="chatriq-user chatriq-user-03"></div>
                         </div>
                         <div class="conversation__details">
                             <div class="conversation__name">
-                                <span class="conversation__name--title">Earnest Clements</span>
+                                <span class="conversation__name--title">{{connection.id}}</span>
                                 <span class="conversation__time">07:15 PM</span>
                             </div>
                             <div class="conversation__message">
@@ -53,224 +53,6 @@
                                 </div>
                                 <span><i class="mdi mdi-volume-mute"></i></span>
                                 <span class="badge badge-primary badge-rounded">9</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded offline">
-                            <div class="chatriq-user chatriq-user-04"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Willie McLaughlin</div>
-                                <div class="conversation__time">07:15 PM</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Hi
-                                </div>
-                                <span><i class="mdi mdi-volume-mute"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded recently-active">
-                            <div class="chatriq-user chatriq-user-05"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Andrew Showalter</div>
-                                <div class="conversation__time">Yesterday</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded offline">
-                            <div class="chatriq-user chatriq-user-06"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Michael L. Haley</div>
-                                <div class="conversation__time">Yesterday</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded online">
-                            <div class="chatriq-user chatriq-user-07"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Irene D. Heffner</div>
-                                <div class="conversation__time">Yesterday</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded recently-active">
-                            <div class="chatriq-user chatriq-user-08"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Shantelle B. Torres</div>
-                                <div class="conversation__time">Yesterday</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded offline">
-                            <div class="chatriq-user chatriq-user-09"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Mary C. Barnes</div>
-                                <div class="conversation__time">Yesterday</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded online">
-                            <div class="chatriq-user chatriq-user-10"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Gerald W. Tyson</div>
-                                <div class="conversation__time">Yesterday</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded online">
-                            <div class="chatriq-user chatriq-user-02"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Willie Y. Bollin</div>
-                                <div class="conversation__time">Yesterday</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded recently-active">
-                            <div class="chatriq-user chatriq-user-12"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Michael T. Howard</div>
-                                <div class="conversation__time">Yesterday</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded offline">
-                            <div class="chatriq-user chatriq-user-13"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Anne T. Jackson</div>
-                                <div class="conversation__time">Yesterday</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded online">
-                            <div class="chatriq-user chatriq-user-14"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Lynne E. Gilbreath</div>
-                                <div class="conversation__time">Yesterday</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="conversation">
-                        <div class="user-avatar user-avatar-rounded recently-active">
-                            <div class="chatriq-user chatriq-user-02"></div>
-                        </div>
-                        <div class="conversation__details">
-                            <div class="conversation__name">
-                                <div class="conversation__name--title">Barbara E. Conroy</div>
-                                <div class="conversation__time">Yesterday</div>
-                            </div>
-                            <div class="conversation__message">
-                                <div class="conversation__message-preview">
-                                    Lorem ipsum dolor sit amet.
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -317,8 +99,23 @@
 </template>
 
 <script>
+    // import { mapGetters } from 'vuex';
     export default {
-        name: "lists"
+        data: function() {
+            return {
+                activeInput: null
+            }
+        },
+        methods: {
+            updateActiveInput(index) {
+                this.activeInput = index;
+            }
+        },
+        computed: {
+            connections() {
+                return this.$store.state.connections;
+            }
+        }
     }
 </script>
 
