@@ -6,7 +6,7 @@
                 <div class="conversation-panel">
                     <convers-head></convers-head>
 
-                    <convers-body :conversations="conversations"></convers-body>
+                    <convers-body></convers-body>
 
                     <convers-input></convers-input>
                 </div>
@@ -254,18 +254,14 @@
     import ConversBody from "./partials/Convers-body";
     import ConversInput from "./partials/Convers-input";
     export default {
-        data: function(){
+        data() {
             return {
-                inputActive: false,
-                conversations: []
+                inputActive: false
             }
         },
         methods: {
             changedActiveInput(newValue) {
                 this.inputActive = newValue;
-            },
-            changedConversations(newValue) {
-                this.conversations = newValue[this.inputActivate];
             }
         },
         created() {
@@ -273,12 +269,6 @@
                 state => state.activeInput,
                 (newValue) => {
                     this.changedActiveInput(newValue);
-                }
-            );
-            this.$store.watch(
-                state => state.conversations,
-                (newValue) => {
-                    this.changedConversations(newValue);
                 }
             );
         },

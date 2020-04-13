@@ -37,7 +37,9 @@
 </template>
 
 <script>
+    import chatMixin from '../../../../../mixins/chat';
     export default {
+        mixins: [chatMixin],
         data() {
             return {
                 messages: ''
@@ -53,6 +55,13 @@
                         message: this.messages
                     }
                 }
+                const msg = {
+                    message: this.messages,
+                    time: "07:15 AM",
+                    type: 1,
+                    seen: 0
+                }
+                this.storeConversation(msg, this.$store.state.activeInput);
                 this.$store.state.socketInstance.send(JSON.stringify(sendMsg));
                 this.messages = '';
             }

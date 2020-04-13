@@ -8,9 +8,11 @@
 </template>
 
 <script>
+import chatMixin from '../mixins/chat';
 import Header from '../components/chat/common/Header.vue';
 import appBody from '../components/chat/Wrapper.vue'
 export default {
+  mixins: [chatMixin],
   data: function() {
     return {
       name: "Hello",
@@ -22,11 +24,18 @@ export default {
   },
   methods: {
     updateConnectionStore(connections) {
+      connections.forEach(connection => {
+        if(connection.id in this.$store.state.conversations) {
+          return;
+        }
+        this.$store.state.conversations[connection.id] = [];
+      });
       this.$store.state.connections = connections;
     }
   },
   created() {
-    const ws = new WebSocket('ws://localhost:8080');
+    const name = prompt("Please enter your name");
+    const ws = new WebSocket(`ws://${name}@localhost:8080`);
     this.$store.state.socketInstance = ws;
     ws.onmessage = (event) => {
       let data = event.data;
@@ -35,10 +44,11 @@ export default {
       }
       switch(data.type) {
         case 'CONNECTION_LIST':
-          console.log("working switch");
           this.updateConnectionStore(data.connections);
           break;
-        
+        case 'USER_MESSAGE':
+          this.storeConversation(data.message, data.from);
+          break;
       }
     }
   }

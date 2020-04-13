@@ -4,8 +4,8 @@
             <div class="container">
                 <ul class="chat-style-2">
                     <li v-for="(conversation, convsIndex) in conversations"
-                        :key="convsIndex" class="message" :class="[conversation.type == 0 ? 'sent' : 'received' ]">
-                        <div class="message__text"> {{conversation.message[0]}}
+                        :key="convsIndex" class="message" :class="[conversation.type == 1 ? 'sent' : 'received' ]">
+                        <div class="message__text"> {{conversation.message}}
                             <div class="metadata">
                                 <span class="time">{{conversation.time}}</span>
                             </div>
@@ -20,33 +20,40 @@
 
 <script>
     export default {
-        // props: ['conversations'],
-        data: function () {
+        data() {
             return {
                 conversations: [
-                    {
-                        message: ["Hi"],
-                        time: "07:15 AM",
-                        type: 0,
-                        seen: 0
-                    },
-                    {
-                        message: ["How are you"],
-                        time: "07:15 AM",
-                        type: 0
-                    },
-                    {
-                        message: ["Hi"],
-                        time: "07:15 AM",
-                        type: 1
-                    },
-                    {
-                        message: ["Im fine"],
-                        time: "07:15 AM",
-                        type: 1
-                    }
                 ]
             }
+        },
+        methods: {
+            getConversation() {
+                const activeInput = this.$store.state.activeInput;
+                const allConvers = this.$store.state.conversations;
+                if(activeInput === null) {
+                    return;
+                }
+                if(activeInput in allConvers) {
+                    this.conversations = allConvers[activeInput];
+                }
+            }
+        },
+        created() {
+            this.$store.watch(
+                state => state.activeInput,
+                () => {
+                    this.conversations = [];
+                    this.getConversation();
+                }
+            );
+            // this.$store.watch(
+            //     state => state.conversations,
+            //     () => {
+            //         this.conversations = [];
+            //         this.getConversation();
+            //     }
+            // );
+            this.getConversation();
         }
     }
 </script>

@@ -7,12 +7,13 @@ require('dotenv').config();
 
 let connectionStack = [];
 
-function broadcastMessage(senderId, message) {
+function broadcastMessage(senderId, message, from) {
     for(let i = 0; i < connectionStack.length; i++) {
         if(connectionStack[i].id === senderId) {
             const sendMsg = {
                 status: true,
                 type: 'USER_MESSAGE',
+                from,
                 message: {
                     message,
                     time: "07:15 AM",
@@ -52,12 +53,11 @@ new wsec({port: 8080}, (socket) => {
         if(data.length < 10) {
             return;
         }
-        data = JSON.stringify(data);
+        data = JSON.parse(data);
         switch(data.type) {
             case 'USER_MESSAGE':
-              broadcastMessage(data.message.to, data.message.message);
+              broadcastMessage(data.message.to, data.message.message, connection.id);
               break;
-            
           }
     });
     socket.on('end', (connection) => {
