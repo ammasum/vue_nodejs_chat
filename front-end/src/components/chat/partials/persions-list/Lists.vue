@@ -24,7 +24,7 @@
                         </div>
                         <div class="conversation__details">
                             <div class="conversation__name">
-                                <span class="conversation__name--title">{{connection.id}}</span>
+                                <span class="conversation__name--title">{{connection.name}}</span>
                                 <span class="conversation__time">07:15 PM</span>
                             </div>
                             <div class="conversation__message">

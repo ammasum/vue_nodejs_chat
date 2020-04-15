@@ -35,7 +35,7 @@ export default {
   },
   created() {
     const name = prompt("Please enter your name");
-    const ws = new WebSocket(`ws://${name}@localhost:8080`);
+    const ws = new WebSocket(`ws://localhost:8080?name=${name}`);
     this.$store.state.socketInstance = ws;
     ws.onmessage = (event) => {
       let data = event.data;
@@ -53,6 +53,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style>

@@ -7,6 +7,17 @@ require('dotenv').config();
 
 let connectionStack = [];
 
+function stackNewConnection(connection) {
+    let name = connection.headers.url;
+    name = name.split('?')[1];
+    name = name.split('=')[1];
+    connectionStack.push({
+        connection: connection,
+        id: connection.connectionID,
+        name: name
+    });
+}
+
 function broadcastMessage(senderId, message, from) {
     for(let i = 0; i < connectionStack.length; i++) {
         if(connectionStack[i].id === senderId) {
@@ -21,18 +32,22 @@ function broadcastMessage(senderId, message, from) {
                     seen: 0
                 }
             }
-            connectionStack[i].write(sendMsg);
+            connectionStack[i].write(JSON.stringify(sendMsg));
             return;
         }
     }
 }
 
 function updateAllConnectedList() {
+    // console.log(connectionStack);
     connectionStack.forEach((connection) => {
         const tempConn = [];
         for(let i = 0; i < connectionStack.length; i++) {
             if(connectionStack[i].id !== connection.id) {
-                tempConn.push({id: connectionStack[i].id});
+                tempConn.push({
+                    id: connectionStack[i].id,
+                    name: connectionStack[i].name
+                });
             }
         }
         const sendObj = {
@@ -40,13 +55,13 @@ function updateAllConnectedList() {
             status: true,
             type: 'CONNECTION_LIST'
         }
-        connection.write(sendObj);
+        connection.connection.write(JSON.stringify(sendObj));
     });
 }
 
 new wsec({port: 8080}, (socket) => {
     socket.on('connected', (connection) => {
-        connectionStack.push(connection);
+        stackNewConnection(connection);
         updateAllConnectedList();
     });
     socket.on('data', (connection, data) => {

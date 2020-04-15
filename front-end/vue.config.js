@@ -2,7 +2,7 @@ module.exports = {
     configureWebpack: {
         devServer: {
             watchOptions: {
-                ignored: [/node_modules/, /public[/]assets[/]admin/, /public[/]assets[/]home[/]css[/]font-awesome/],
+                ignored: [/node_modules/],
             }
         }
     },
