@@ -8,7 +8,7 @@
                 <div class="chatriq-user chatriq-user-11"></div>
             </div>
             <div class="conversation__name">
-                <div class="conversation__name--title">Jack P. Angulo</div>
+                <div class="conversation__name--title">{{ name }}</div>
                 <div class="conversation__time">last seen at 07:15 PM</div>
             </div>
         </div>
@@ -62,6 +62,29 @@
 
 <script>
     export default {
+        data() {
+            return {
+                name: ''
+            }
+        },
+        methods: {
+            setName() {
+                this.$store.state.connections.forEach((connection) => {
+                    console.log("connections");
+                    if(connection.id === this.$route.params.userid) {
+                        this.name = connection.name;
+                    }
+                });
+            }
+        },
+        watch: {
+            $router() {
+                this.setName();
+            }
+        },
+        created() {
+            this.setName();
+        }
     }
 </script>
 
