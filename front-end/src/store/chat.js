@@ -7,7 +7,6 @@ export default new Vuex.Store({
     state: {
       socketInstance: null,
       connections: [],
-      activeInput: null,
       conversations: {}
     }
   })

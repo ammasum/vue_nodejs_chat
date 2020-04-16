@@ -28,31 +28,24 @@
         },
         methods: {
             getConversation() {
-                const activeInput = this.$store.state.activeInput;
                 const allConvers = this.$store.state.conversations;
-                if(activeInput === null) {
-                    return;
+                if(this.$route.params.userid in allConvers) {
+                    this.conversations = allConvers[this.$route.params.userid];
                 }
-                if(activeInput in allConvers) {
-                    this.conversations = allConvers[activeInput];
-                }
+            }
+        },
+        watch: {
+            $route() {
+                this.getConversation();
             }
         },
         created() {
             this.$store.watch(
-                state => state.activeInput,
+                state => state.conversations,
                 () => {
-                    this.conversations = [];
                     this.getConversation();
                 }
             );
-            // this.$store.watch(
-            //     state => state.conversations,
-            //     () => {
-            //         this.conversations = [];
-            //         this.getConversation();
-            //     }
-            // );
             this.getConversation();
         }
     }

@@ -2,8 +2,9 @@
   <div class="main-wrapper">
     <div class="chatapp">
       <app-header></app-header>
-      <app-body-mobile v-if="isMobileVersion()"></app-body-mobile>
-      <app-body v-else></app-body>
+      <!-- <app-body-mobile v-if="isMobileVersion()"></app-body-mobile> -->
+      <!-- <app-body v-else></app-body> -->
+      <app-body></app-body>
     </div>
   </div>
 </template>
@@ -12,7 +13,7 @@
 import chatMixin from '../mixins/chat';
 import Header from '../components/chat/common/Header.vue';
 import appBody from '../components/chat/Wrapper.vue'
-import appBodyMobile from '../components/chat/Wrapper-mobile.vue'
+// import appBodyMobile from '../components/chat/Wrapper-mobile.vue'
 export default {
   mixins: [chatMixin],
   data: function() {
@@ -23,7 +24,7 @@ export default {
   components: {
     appHeader: Header,
     appBody,
-    appBodyMobile
+    // appBodyMobile
   },
   methods: {
     isMobileVersion () {
@@ -45,7 +46,7 @@ export default {
   },
   created() {
     // const host = window.location.host.split(':')[0];
-    const name = prompt("Please enter your name");
+    const name = 'Masum' || prompt("Please enter your name");
     const ws = new WebSocket(`ws://192.168.0.105:8080?name=${name}`);
     this.$store.state.socketInstance = ws;
     ws.onmessage = (event) => {

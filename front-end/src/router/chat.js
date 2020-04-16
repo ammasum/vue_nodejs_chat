@@ -7,10 +7,11 @@ import BlankChatBox from '../components/chat/partials/chat-container/Blank-chat-
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/', component: BlankChatBox },
-    { path: '/:userid', component: ChatBox }
+    { path: '/chat', component: BlankChatBox },
+    { path: '/chat/:userid', component: ChatBox }
 ]
 
 export default new VueRouter({
+    mode: 'history',
     routes
 });

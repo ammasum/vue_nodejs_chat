@@ -55,7 +55,7 @@
                     status: true,
                     type: 'USER_MESSAGE',
                     message: {
-                        to: this.$store.state.activeInput,
+                        to: this.$route.params.userid,
                         message: this.messages
                     }
                 }
@@ -65,7 +65,7 @@
                     type: 1,
                     seen: 0
                 }
-                this.storeConversation(msg, this.$store.state.activeInput);
+                this.storeConversation(msg, this.$route.params.userid);
                 this.$store.state.socketInstance.send(JSON.stringify(sendMsg));
                 this.messages = '';
             }

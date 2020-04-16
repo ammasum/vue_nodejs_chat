@@ -249,24 +249,6 @@
     import ConversBody from "./partials/Convers-body";
     import ConversInput from "./partials/Convers-input";
     export default {
-        data() {
-            return {
-                inputActive: false
-            }
-        },
-        methods: {
-            changedActiveInput(newValue) {
-                this.inputActive = newValue;
-            }
-        },
-        created() {
-            this.$store.watch(
-                state => state.activeInput,
-                (newValue) => {
-                    this.changedActiveInput(newValue);
-                }
-            );
-        },
         components: {ConversInput, ConversBody, ConversHead}
     }
 </script>

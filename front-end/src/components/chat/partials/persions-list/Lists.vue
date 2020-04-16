@@ -18,7 +18,7 @@
 
             <ul class="list-unstyled">
                 <li v-for="(connection, index) in connections" :key="index" :class="{active: connection.id === activeInput}">
-                    <div class="conversation" @click="updateActiveInput(connection.id)">
+                    <div class="conversation" @click="onConversationSelect(connection.id)">
                         <div class="user-avatar user-avatar-rounded online">
                             <div class="chatriq-user chatriq-user-03"></div>
                         </div>
@@ -87,8 +87,8 @@
             }
         },
         methods: {
-            updateActiveInput(id) {
-                this.$store.state.activeInput = id;
+            onConversationSelect(id) {
+                this.$router.push({ path: '/chat/' + id });
                 this.activeInput = id;
             }
         },
