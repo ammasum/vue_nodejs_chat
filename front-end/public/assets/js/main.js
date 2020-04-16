@@ -126,10 +126,6 @@ $(document).ready(function () {
       function resize() {
         if ($window.width() < 992) {
           $(".chatapp-user-list-body ul li, .settings-nav-menu a").removeClass("active");
-
-          $(".conversation").on('click', function () {
-            $(".chatapp__conversations").addClass("open");
-          });
            $(".calllist").on('click', function () {
             $(".ca-content__callswrapper").addClass("open");
           });
@@ -138,11 +134,6 @@ $(document).ready(function () {
           });
           $(".settings-nav-menu").on('click', function () {
             $(".settings-nav-content").addClass("open");
-          });
-
-          $(".back-button-md").on('click', function () {
-            $(".chatapp__conversations, .ca-content__callswrapper, .contactist-profile-wrapper, .settings-nav-content").removeClass("open");
-            $(".chatapp-user-list-body ul li, .settings-nav-menu a").removeClass("active");
           });
           return $body.addClass('small-devices');
         }

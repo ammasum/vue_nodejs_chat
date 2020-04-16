@@ -79,8 +79,9 @@
 </template>
 
 <script>
-    // import { mapGetters } from 'vuex';
+    import responsiveMixin from '@/mixins/responsive';
     export default {
+        mixins: [responsiveMixin],
         data: function() {
             return {
                 activeInput: null
@@ -90,6 +91,9 @@
             onConversationSelect(id) {
                 this.$router.push({ path: '/chat/' + id });
                 this.activeInput = id;
+                if(this.isMobileVersion()) {
+                    this.$emit('switch');
+                }
             }
         },
         computed: {

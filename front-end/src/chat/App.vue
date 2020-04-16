@@ -2,20 +2,21 @@
   <div class="main-wrapper">
     <div class="chatapp">
       <app-header></app-header>
-      <!-- <app-body-mobile v-if="isMobileVersion()"></app-body-mobile> -->
-      <!-- <app-body v-else></app-body> -->
-      <app-body></app-body>
+      <app-body-mobile v-if="isMobileVersion()"></app-body-mobile>
+      <app-body v-else></app-body>
+      <!-- <app-body></app-body> -->
     </div>
   </div>
 </template>
 
 <script>
 import chatMixin from '../mixins/chat';
+import responsiveMixin from '../mixins/responsive';
 import Header from '../components/chat/common/Header.vue';
 import appBody from '../components/chat/Wrapper.vue'
-// import appBodyMobile from '../components/chat/Wrapper-mobile.vue'
+import appBodyMobile from '../components/chat/Wrapper-mobile.vue'
 export default {
-  mixins: [chatMixin],
+  mixins: [chatMixin, responsiveMixin],
   data: function() {
     return {
       name: "Hello",
@@ -24,16 +25,9 @@ export default {
   components: {
     appHeader: Header,
     appBody,
-    // appBodyMobile
+    appBodyMobile
   },
   methods: {
-    isMobileVersion () {
-			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-				return true
-			} else {
-				return false
-			}
-		},
     updateConnectionStore(connections) {
       connections.forEach(connection => {
         if(connection.id in this.$store.state.conversations) {
@@ -46,7 +40,7 @@ export default {
   },
   created() {
     // const host = window.location.host.split(':')[0];
-    const name = 'Masum' || prompt("Please enter your name");
+    const name = prompt("Please enter your name");
     const ws = new WebSocket(`ws://192.168.0.105:8080?name=${name}`);
     this.$store.state.socketInstance = ws;
     ws.onmessage = (event) => {

@@ -386,10 +386,6 @@ Last change:    25/11/2019 [Initial Release]
 }
 
 @media only screen and (max-width: 992px) {
-  .chatapp__conversations {
-    display: none;
-  }
-
   .chatapp__conversations.open {
     position: fixed;
     top: 0;

@@ -1,6 +1,6 @@
 <template>
     <div class="chatapp__conversations">
-        <router-view></router-view>
+        <router-view @switch="$emit('switch')"></router-view>
     </div>
 </template>
 

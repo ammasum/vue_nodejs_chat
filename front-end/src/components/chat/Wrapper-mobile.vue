@@ -2,7 +2,7 @@
     <div class="chatapp__content">
         <div class="chatapp__messagetab">
             <persions-list v-if="viewMode === 'list'" @switch="viewMode = 'input'"></persions-list>
-            <chat-area v-else @switch="viewMode = 'list'"></chat-area>
+            <chat-area v-else @switch="switchMode()"></chat-area>
         </div>
     </div>
 </template>
@@ -14,6 +14,12 @@
         data() {
             return {
                 viewMode: "list"
+            }
+        },
+        methods: {
+            switchMode() {
+                console.log("Fire from mobile");
+                this.viewMode = 'list'
             }
         },
         components: {

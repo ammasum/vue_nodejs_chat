@@ -1,6 +1,6 @@
 <template>
     <div class="conversation-panel__head">
-        <div class="back-button-md">
+        <div @click="$emit('switch')" class="back-button-md">
             <i class="mdi mdi-arrow-left"></i>
         </div>
         <div class="conversation-panel__avatar info-panel-opener">
@@ -62,7 +62,6 @@
 
 <script>
     export default {
-        name: "Convers-head"
     }
 </script>
 

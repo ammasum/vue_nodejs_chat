@@ -3,7 +3,7 @@
         <!-- conversation wrapper start -->
         <div class="conversation-wrapper">
             <div class="conversation-panel">
-                <convers-head></convers-head>
+                <convers-head @switch="$emit('switch')"></convers-head>
 
                 <convers-body></convers-body>
 
@@ -249,6 +249,16 @@
     import ConversBody from "./partials/Convers-body";
     import ConversInput from "./partials/Convers-input";
     export default {
+        methods: {
+            onBack() {
+                console.log("Back fired");
+            }
+        },
+        created() {
+            setTimeout(() => {
+                this.$emit('switchO');
+            }, 2000);
+        },
         components: {ConversInput, ConversBody, ConversHead}
     }
 </script>
