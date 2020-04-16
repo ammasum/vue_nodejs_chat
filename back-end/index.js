@@ -32,14 +32,13 @@ function broadcastMessage(senderId, message, from) {
                     seen: 0
                 }
             }
-            connectionStack[i].write(JSON.stringify(sendMsg));
+            connectionStack[i].connection.write(JSON.stringify(sendMsg));
             return;
         }
     }
 }
 
 function updateAllConnectedList() {
-    // console.log(connectionStack);
     connectionStack.forEach((connection) => {
         const tempConn = [];
         for(let i = 0; i < connectionStack.length; i++) {
@@ -61,6 +60,7 @@ function updateAllConnectedList() {
 
 new wsec({port: 8080}, (socket) => {
     socket.on('connected', (connection) => {
+        console.log("New connection");
         stackNewConnection(connection);
         updateAllConnectedList();
     });
@@ -71,13 +71,13 @@ new wsec({port: 8080}, (socket) => {
         data = JSON.parse(data);
         switch(data.type) {
             case 'USER_MESSAGE':
-              broadcastMessage(data.message.to, data.message.message, connection.id);
+              broadcastMessage(data.message.to, data.message.message, connection.connectionID);
               break;
           }
     });
     socket.on('end', (connection) => {
         connectionStack = connectionStack.filter(conn => {
-            if(conn.id === connection.id) {
+            if(conn.id === connection.connectionID) {
                 return false;
             }
             return true;

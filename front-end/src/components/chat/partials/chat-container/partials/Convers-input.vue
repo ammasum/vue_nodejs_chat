@@ -11,7 +11,7 @@
             </div>
 
             <div class="composer__middle">
-                <textarea class="form-control" rows="1" v-model="messages" placeholder="Type a message..."></textarea>
+                <textarea class="form-control" @keyup.enter="onSend" rows="1" v-model="messages" placeholder="Type a message..."></textarea>
 
                 <div class="composer__middle--microphone">
                     <i class="mdi mdi-microphone"></i>
@@ -46,6 +46,10 @@
             }
         },
         methods: {
+            onEnter() {
+                this.messages = this.messages.pop();
+                this.onSend();
+            },
             onSend() {
                 const sendMsg = {
                     status: true,

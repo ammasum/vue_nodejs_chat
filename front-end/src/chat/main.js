@@ -1,10 +1,12 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
+import Routes from '../router/chat';
 import store from '../store/chat';
 
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
-  store
+  store,
+  routes: Routes
 }).$mount('#app')
