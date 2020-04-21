@@ -70,7 +70,6 @@
         methods: {
             setName() {
                 this.$store.state.connections.forEach((connection) => {
-                    console.log("connections");
                     if(connection.id === this.$route.params.userid) {
                         this.name = connection.name;
                     }

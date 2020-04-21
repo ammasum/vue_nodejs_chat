@@ -69,7 +69,7 @@ new wsec({port: 8080}, (socket) => {
         data = JSON.parse(data);
         switch(data.type) {
             case 'USER_MESSAGE':
-              broadcastMessage(data.message.to, data.message_type, data.message.message, connection.connectionID);
+              broadcastMessage(data.message.to, data.message.message_type, data.message.message, connection.connectionID);
               break;
           }
     });
