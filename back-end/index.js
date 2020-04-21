@@ -18,7 +18,7 @@ function stackNewConnection(connection) {
     });
 }
 
-function broadcastMessage(senderId, message, from) {
+function broadcastMessage(senderId, type, message, from) {
     for(let i = 0; i < connectionStack.length; i++) {
         if(connectionStack[i].id === senderId) {
             const sendMsg = {
@@ -26,6 +26,7 @@ function broadcastMessage(senderId, message, from) {
                 type: 'USER_MESSAGE',
                 from,
                 message: {
+                    message_type: type,
                     message,
                     time: "07:15 AM",
                     type: 0,
@@ -65,13 +66,10 @@ new wsec({port: 8080}, (socket) => {
         updateAllConnectedList();
     });
     socket.on('data', (connection, data) => {
-        if(data.length < 10) {
-            return;
-        }
         data = JSON.parse(data);
         switch(data.type) {
             case 'USER_MESSAGE':
-              broadcastMessage(data.message.to, data.message.message, connection.connectionID);
+              broadcastMessage(data.message.to, data.message_type, data.message.message, connection.connectionID);
               break;
           }
     });

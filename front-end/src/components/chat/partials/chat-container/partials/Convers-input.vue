@@ -2,7 +2,7 @@
     <div class="conversation-panel__footer">
         <div class="composer">
             <div class="composer__left">
-                <div class="composer__left--sticker">
+                <div @click="imageUpload()" class="composer__left--sticker">
                     <i class="mdi mdi-sticker-emoji"></i>
                 </div>
                 <div class="composer__left--emoticon">
@@ -46,19 +46,41 @@
             }
         },
         methods: {
+            imageUpload() {
+                const img = document.createElement('INPUT');
+                img.setAttribute("type", "file"); 
+                img.onchange = () => {
+                    this.readFile(img.files[0]);
+                };
+                img.click();
+            },
+            readFile(file) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    this.sendFile(e.target.result);
+                };
+                reader.readAsDataURL(file);
+            },
+            sendFile(data) {
+                const message = this.formatMessage('FILE/IMAGE', data);
+                this.$store.state.socketInstance.send(JSON.stringify(message));
+            },
             onEnter() {
                 this.messages = this.messages.pop();
                 this.onSend();
             },
-            onSend() {
-                const sendMsg = {
+            formatMessage(type, message) {
+                return {
                     status: true,
                     type: 'USER_MESSAGE',
                     message: {
                         to: this.$route.params.userid,
-                        message: this.messages
+                        message_type: type,
+                        message: message
                     }
                 }
+            },
+            onSend() {
                 const msg = {
                     message: this.messages,
                     time: "07:15 AM",
@@ -66,7 +88,7 @@
                     seen: 0
                 }
                 this.storeConversation(msg, this.$route.params.userid);
-                this.$store.state.socketInstance.send(JSON.stringify(sendMsg));
+                this.$store.state.socketInstance.send(JSON.stringify(this.formatMessage('TEXT/PLAIN', this.messages)));
                 this.messages = '';
             }
         }

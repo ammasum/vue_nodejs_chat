@@ -5,7 +5,10 @@
                 <ul class="chat-style-2">
                     <li v-for="(conversation, convsIndex) in conversations"
                         :key="convsIndex" class="message" :class="[conversation.type == 1 ? 'sent' : 'received' ]">
-                        <div class="message__text"> {{conversation.message}}
+                        <div v-if="conversation.message_type === 'FILE/IMAGE'" style="width: 300px;">
+                            <img :src="conversation.message">
+                        </div>
+                        <div v-else class="message__text"> {{conversation.message}}
                             <div class="metadata">
                                 <span class="time">{{conversation.time}}</span>
                             </div>
