@@ -63,6 +63,14 @@
             },
             sendFile(data) {
                 const message = this.formatMessage('FILE/IMAGE', data);
+                const msg = {
+                    message: data,
+                    time: "07:15 AM",
+                    type: 1,
+                    message_type: 'FILE/IMAGE',
+                    seen: 0
+                }
+                this.storeConversation(msg, this.$route.params.userid);
                 this.$store.state.socketInstance.send(JSON.stringify(message));
             },
             onEnter() {
@@ -85,6 +93,7 @@
                     message: this.messages,
                     time: "07:15 AM",
                     type: 1,
+                    message_type: 'TEXT/PLAIN',
                     seen: 0
                 }
                 this.storeConversation(msg, this.$route.params.userid);
@@ -95,6 +104,12 @@
     }
 </script>
 
-<style scoped>
-
+<style>
+/* .conversation-panel__footer{
+    position: relative;
+}
+.conversation-panel__footer .composer{
+    position: fixed;
+    width: 100%;
+} */
 </style>

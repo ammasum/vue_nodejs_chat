@@ -4,9 +4,9 @@
             <div class="container">
                 <ul class="chat-style-2">
                     <li v-for="(conversation, convsIndex) in conversations"
-                        :key="convsIndex" class="message" :class="[conversation.type == 1 ? 'sent' : 'received' ]">
+                        :key="convsIndex" class="message mb-3" :class="[conversation.type == 1 ? 'sent' : 'received' ]">
                         <div v-if="conversation.message_type === 'FILE/IMAGE'" style="width: 300px;">
-                            <img :src="conversation.message">
+                            <img style="width: 300px;height: auto" :src="conversation.message">
                         </div>
                         <div v-else class="message__text"> {{conversation.message}}
                             <div class="metadata">
@@ -55,5 +55,8 @@
 </script>
 
 <style>
-
+.conversation-panel__body{
+    overscroll-behavior: contain;
+        overflow-x: hidden;
+}
 </style>

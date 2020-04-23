@@ -59,7 +59,7 @@ function updateAllConnectedList() {
     });
 }
 
-new wsec({port: 8080}, (socket) => {
+new wsec({port: 8080, host: '192.168.0.105'}, (socket) => {
     socket.on('connected', (connection) => {
         console.log("New connection");
         stackNewConnection(connection);
