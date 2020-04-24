@@ -1,86 +1,63 @@
-const http = require('http');
 const wsec = require('wsec');
 
-require('dotenv').config();
-
-// const chatMdl = require('./model/chat');
-
-let connectionStack = [];
-
-function stackNewConnection(connection) {
-    let name = connection.headers.url;
-    name = name.split('?')[1];
-    name = name.split('=')[1];
-    connectionStack.push({
-        connection: connection,
-        id: connection.connectionID,
-        name: name
-    });
+const chating = require('./chat');
+const calling = require('./calling');
+process.rlt = {
+    chatHandler: new chating,
+    callHandler: new calling
 }
 
-function broadcastMessage(senderId, type, message, from) {
-    for(let i = 0; i < connectionStack.length; i++) {
-        if(connectionStack[i].id === senderId) {
-            const sendMsg = {
-                status: true,
-                type: 'USER_MESSAGE',
-                from,
-                message: {
-                    message_type: type,
-                    message,
-                    time: "07:15 AM",
-                    type: 0,
-                    seen: 0
-                }
-            }
-            connectionStack[i].connection.write(JSON.stringify(sendMsg));
-            return;
+process.users = [
+    {
+        id: 1,
+        name: 'Masum',
+    },
+    {
+        id: 2,
+        name: 'Suji',
+    },
+    {
+        id: 3,
+        name: 'Sumi',
+    },
+    {
+        id: 4,
+        name: 'Ruji',
+    }
+]
+
+process.helper = {
+    parseQuery(url) {
+        const vars = {}
+        const queryString = url.split('?');
+        if(queryString.length < 2) {
+            return {};
         }
+        (queryString[1].split("&")).forEach(item => {
+            const tmp = item.split('=');
+            vars[tmp[0]] = tmp[1];
+        });
+        return vars;
     }
 }
-
-function updateAllConnectedList() {
-    connectionStack.forEach((connection) => {
-        const tempConn = [];
-        for(let i = 0; i < connectionStack.length; i++) {
-            if(connectionStack[i].id !== connection.id) {
-                tempConn.push({
-                    id: connectionStack[i].id,
-                    name: connectionStack[i].name
-                });
-            }
-        }
-        const sendObj = {
-            connections: tempConn,
-            status: true,
-            type: 'CONNECTION_LIST'
-        }
-        connection.connection.write(JSON.stringify(sendObj));
-    });
-}
+require('dotenv').config();
 
 new wsec({port: 8080, host: '192.168.0.105'}, (socket) => {
+    let eventHandler;
     socket.on('connected', (connection) => {
-        console.log("New connection");
-        stackNewConnection(connection);
-        updateAllConnectedList();
+        const vars = process.helper.parseQuery(connection.headers.url);
+        if(vars.type === 'message') {
+            eventHandler = process.rlt.chatHandler;
+        } else {
+            eventHandler = process.rlt.callHandler;
+        }
+        eventHandler.connected(connection);
     });
     socket.on('data', (connection, data) => {
-        data = JSON.parse(data);
-        switch(data.type) {
-            case 'USER_MESSAGE':
-              broadcastMessage(data.message.to, data.message.message_type, data.message.message, connection.connectionID);
-              break;
-          }
+        eventHandler.data(connection, data);
     });
     socket.on('end', (connection) => {
-        connectionStack = connectionStack.filter(conn => {
-            if(conn.id === connection.connectionID) {
-                return false;
-            }
-            return true;
-        });
-        updateAllConnectedList();
+        eventHandler.end(connection);
     });
 });
 

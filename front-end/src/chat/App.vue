@@ -40,8 +40,8 @@ export default {
   },
   created() {
     // const host = window.location.host.split(':')[0];
-    const name = prompt("Please enter your name");
-    const ws = new WebSocket(`ws://192.168.0.105:8080?name=${name}`);
+    const id = prompt("Please enter your id");
+    const ws = new WebSocket(`ws://192.168.0.105:8080?id=${id}&type=message`);
     this.$store.state.socketInstance = ws;
     ws.onmessage = (event) => {
       let data = event.data;
