@@ -36,6 +36,9 @@ export default {
         this.$store.state.conversations[connection.id] = [];
       });
       this.$store.state.connections = connections;
+    },
+    connectToCall(data) {
+      window.location.href = `/call/calling/${data.data.id}?accept=1`;
     }
   },
   created() {
@@ -55,6 +58,8 @@ export default {
         case 'USER_MESSAGE':
           this.storeConversation(data.message, data.from);
           break;
+        case 'REQ_TO_CONNECT_CALL':
+          this.connectToCall(data);
       }
     }
   }

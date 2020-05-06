@@ -35,6 +35,21 @@ module.exports = class {
         this.updateAllConnectedList();
     }
 
+    reqForJoinCall(id, from) {
+        this.connectionStack.forEach(connection => {
+            if(connection.id == id) {
+                const msg = {
+                    status: true,
+                    type: 'REQ_TO_CONNECT_CALL',
+                    data: {
+                        id: from
+                    }
+                }
+                connection.connection.send(JSON.stringify(msg));
+            }
+        });
+    }
+
     getNameById(id) {
         for(let i = 0; i < process.users.length; i++) {
             if(process.users[i].id == id) {
